@@ -1,0 +1,15 @@
+item,value
+downstream_patient_ids_exclusion_list,887
+actual_excluded_pretraining_patients,101
+files_excluded_by_patient_overlap,2195
+files_kept_before_signal_qc,7990
+files_skipped_bad_patient_id,0
+files_successfully_processed,7217
+files_failed_signal_processing,0
+files_with_no_valid_window,773
+samples_total_30s_windows,162617
+samples_rejected_by_amplitude_qc,13529
+samples_TUEP_30s_windows,37672
+samples_TUSZ_30s_windows,124945
+total_duration_hours,1355.14
+total_duration_days,56.46

@@ -1,0 +1,86 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\title{Supplementary Data Leakage Audit for DB-EpiFM}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{Audit objective}
+To address the possibility of patient-level data leakage between the self-supervised pretraining corpus and downstream TUH-family evaluation datasets, we performed a patient-level overlap audit before preprocessing the pretraining corpus. The pretraining corpus consisted of TUEP and TUSZ, whereas the downstream TUH-family datasets considered in this audit were TUAB and TUEV.
+
+\section*{Patient-level exclusion protocol}
+Patient identifiers were automatically extracted from the TUH directory structure and EDF file names. We first constructed an exclusion list by taking the union of all patient identifiers appearing in TUAB and TUEV. Any EDF recording in TUEP or TUSZ whose patient identifier appeared in this exclusion list was removed before signal preprocessing. This exclusion was applied at the patient level rather than at the recording or window level, ensuring that no EEG recording from an overlapping patient was used during self-supervised pretraining.
+
+\section*{Audit results}
+The downstream exclusion list contained 887 unique patient identifiers from TUAB and TUEV. Applying this list to the TUEP/TUSZ pretraining sources removed 2195 EDF recordings, corresponding to 101 unique pretraining patients. No EDF file failed patient-identifier parsing, and no signal-processing errors were observed during the final preprocessing run.
+
+\begin{table}[htbp]
+\centering
+\caption{Patient-level overlap removal from the TUEP/TUSZ pretraining corpus.}
+\label{tab:sup_overlap_by_corpus}
+\begin{tabular}{lll}
+\toprule
+corpus & excluded\_edf\_recordings & unique\_excluded\_pretraining\_patients \\
+\midrule
+TUEP & 945 & 28 \\
+TUSZ & 1250 & 81 \\
+TUEP+TUSZ & 2195 & 101 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{table}[htbp]
+\centering
+\caption{Source of patient-level overlap.}
+\label{tab:sup_overlap_by_downstream}
+\begin{tabular}{lll}
+\toprule
+overlap\_with & excluded\_edf\_recordings & unique\_excluded\_pretraining\_patients \\
+\midrule
+TUAB & 2143 & 89 \\
+TUEV & 25 & 7 \\
+TUAB+TUEV & 27 & 5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\section*{Final pretraining corpus after overlap removal}
+After patient-level overlap removal, EEG preprocessing, segmentation, and quality control, the final pretraining corpus contained 162617 non-overlapping 30-s windows, corresponding to approximately 1355.1 h of EEG recordings. TUEP contributed 37672 windows and TUSZ contributed 124945 windows.
+
+\begin{table}[htbp]
+\centering
+\caption{Final pretraining corpus summary after patient-level overlap removal and signal quality control.}
+\label{tab:sup_final_pretraining_summary}
+\begin{tabular}{ll}
+\toprule
+item & value \\
+\midrule
+downstream\_patient\_ids\_exclusion\_list & 887 \\
+actual\_excluded\_pretraining\_patients & 101 \\
+files\_excluded\_by\_patient\_overlap & 2195 \\
+files\_kept\_before\_signal\_qc & 7990 \\
+files\_skipped\_bad\_patient\_id & 0 \\
+files\_successfully\_processed & 7217 \\
+files\_failed\_signal\_processing & 0 \\
+files\_with\_no\_valid\_window & 773 \\
+samples\_total\_30s\_windows & 162617 \\
+samples\_rejected\_by\_amplitude\_qc & 13529 \\
+samples\_TUEP\_30s\_windows & 37672 \\
+samples\_TUSZ\_30s\_windows & 124945 \\
+total\_duration\_hours & 1355.14 \\
+total\_duration\_days & 56.46 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\section*{Released sanitized manifests}
+The supplementary repository folder includes aggregate audit statistics and release-safe manifests. Raw patient identifiers, local absolute paths, raw EDF files, and preprocessed LMDB databases are not redistributed. Patient hashes are pseudonymous identifiers generated for this audit release to preserve within-audit consistency without publishing raw patient identifiers.
+
+\end{document}

@@ -1,0 +1,31 @@
+{
+  "pretraining_sources": [
+    "TUEP",
+    "TUSZ"
+  ],
+  "downstream_sources_audited_for_overlap": [
+    "TUAB",
+    "TUEV"
+  ],
+  "downstream_patient_ids_exclusion_list": 887,
+  "actual_excluded_pretraining_patients": 101,
+  "files_excluded_by_patient_overlap": 2195,
+  "files_kept_before_signal_qc": 7990,
+  "files_skipped_bad_patient_id": 0,
+  "files_successfully_processed": 7217,
+  "files_failed_signal_processing": 0,
+  "files_with_no_valid_window": 773,
+  "samples_total_30s_windows": 162617,
+  "samples_rejected_by_amplitude_qc": 13529,
+  "samples_TUEP_30s_windows": 37672,
+  "samples_TUSZ_30s_windows": 124945,
+  "window_length_seconds": 30,
+  "window_stride_seconds": 30,
+  "sampling_rate_hz": 200,
+  "number_of_channels": 16,
+  "total_duration_hours": 1355.14,
+  "total_duration_days": 56.46,
+  "amplitude_qc_threshold_uv": 1000,
+  "created_for_repository": "https://github.com/dayu-lab/DB-EpiFM.git",
+  "created_date": "2026-07-19"
+}
