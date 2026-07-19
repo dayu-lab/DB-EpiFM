@@ -276,6 +276,10 @@ python finetune_main.py \
 ```
 
 ## Pretrained Checkpoints
+# Pretrained Weights
+
+The pretrained weights of DB-EpiFM are available on
+[Hugging Face](https://huggingface.co/dayu-lab/DB-EpiFM).
 
 | Checkpoint | Download | SHA-256 |
 |---|---|---|
