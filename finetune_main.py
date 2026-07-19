@@ -8,6 +8,7 @@ from datasets import  tuab_dataset, tusl_dataset,chb_dataset, tuev_dataset
 from finetune_trainer import Trainer
 from models import model_for_tuab, model_for_tusl,model_for_chb, model_for_tuev
 
+from pathlib import Path
 
 def str2bool(value):
     """Parse common command-line Boolean representations safely."""
@@ -64,10 +65,22 @@ def main():
                         default=True, help='load pretrained backbone weights (default: true)')
     #输入预训练出来的权重
     parser.add_argument('--foundation_dir', type=str,
-                        default='./checkpoints/db_epifm_pretrained.pth',
+                        default='./checkpoints/DB-EpiFM_pretrain.pth',
                         help='foundation_dir')
 
     params = parser.parse_args()
+    if params.use_pretrained_weights:
+    checkpoint_path = Path(params.foundation_dir).expanduser()
+
+    if not checkpoint_path.is_file():
+        raise FileNotFoundError(
+            "The pretrained DB-EpiFM checkpoint was not found at "
+            f"{checkpoint_path}. Run "
+            "`python scripts/download_pretrained.py` "
+            "or provide the correct path with `--foundation_dir`."
+        )
+
+    params.foundation_dir = str(checkpoint_path)
     print(params)
 
     setup_seed(params.seed)
