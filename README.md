@@ -216,11 +216,15 @@ Boolean arguments accept `true/false`, `yes/no`, `on/off`, or `1/0`.
 
 ## Fine-Tuning
 
-Place the pretrained checkpoint at:
+### Pretrained Weights
+
+The pretrained weights of DB-EpiFM are available on
+[Hugging Face](https://huggingface.co/dayu-lab/DB-EpiFM).
+
+Please download:
 
 ```text
-./checkpoints/db_epifm_pretrained.pth
-```
+DB-EpiFM_pretrain.pth
 
 ### TUEV three-class classification
 
@@ -276,10 +280,6 @@ python finetune_main.py \
 ```
 
 ## Pretrained Checkpoints
-# Pretrained Weights
-
-The pretrained weights of DB-EpiFM are available on
-[Hugging Face](https://huggingface.co/dayu-lab/DB-EpiFM).
 
 | Checkpoint | Download | SHA-256 |
 |---|---|---|
