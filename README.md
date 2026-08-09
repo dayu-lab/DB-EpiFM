@@ -67,40 +67,23 @@ cd DB-EpiFM
 
 ### 2. Create an environment
 
-Replace `3.X` with the Python version used for the original experiments:
+The experiments reported in the paper were conducted using Python 3.11.7,
+PyTorch 2.1.2, and CUDA 12.1.
 
 ```bash
-conda create -n db-epifm python=3.X -y
+conda create -n db-epifm python=3.11.7 -y
 conda activate db-epifm
 ```
 
 ### 3. Install dependencies
-
+Install PyTorch 2.1.2 with CUDA 12.1:
 ```bash
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
+pip install torch==2.1.2 --index-url https://download.pytorch.org/whl/cu121
 ```
-
-The original environment used:
-
-```text
-PyTorch 2.9.0+cu126
-Torchvision 0.24.0+cu126
-PyTorch CUDA runtime 12.6
-```
-
-The complete environment snapshot is provided in `requirements-full.txt`. It includes platform-specific development packages, so most users should install `requirements.txt` instead.
-
-Verify the installation with:
-
+Then install the remaining dependencies:
 ```bash
-python --version
-python -c "import torch; print('PyTorch:', torch.__version__); print('CUDA:', torch.version.cuda); print('CUDA available:', torch.cuda.is_available())"
-python -m pip check
+pip install -r requirements.txt
 ```
-
-See [`ENVIRONMENT.md`](ENVIRONMENT.md) for additional details.
-
 ## Data Preparation
 
 The original EEG datasets are **not distributed in this repository**. Users must obtain them from their official providers and comply with the applicable licenses and data-use requirements.
