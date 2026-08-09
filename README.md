@@ -189,12 +189,11 @@ python pretrain_main.py \
     --batch_size 128 \
     --lr 5e-5 \
     --weight_decay 5e-2 \
-    --mask_ratio 0.50 \
+    --mask_ratio 0.15 \
     --freq_mask_ratio 0.15 \
     --sf_fs 200 \
     --sf_bands "0.5-4,4-8,8-13,13-30,30-45" \
-    --lambda_f 1.0 \
-    --lambda_align 0.15 \
+    --lambda_align 0.10 \
     --parallel false
 ```
 
@@ -279,16 +278,6 @@ python finetune_main.py \
     --multi_lr true
 ```
 
-## Pretrained Checkpoints
-
-| Checkpoint | Download | SHA-256 |
-|---|---|---|
-| DB-EpiFM pretrained backbone | Coming soon | Coming soon |
-| TUEV fine-tuned model | Coming soon | Coming soon |
-| TUAB fine-tuned model | Coming soon | Coming soon |
-| CHB-MIT fine-tuned model | Coming soon | Coming soon |
-
-Large checkpoints should be distributed through a GitHub Release, Hugging Face, Zenodo, or Git LFS rather than committed directly to the main Git history.
 
 ## Reproducing the Paper Results
 
