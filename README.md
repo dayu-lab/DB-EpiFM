@@ -4,8 +4,8 @@ Official implementation of **DB-EpiFM: A Dual-Branch Foundation Model for Epilep
 
 DB-EpiFM learns complementary EEG representations through:
 
-- a **spatial-temporal (ST) branch** based on convolutional patch embedding and a criss-cross Transformer;
-- a **spatial-frequency (SF) branch** based on interpretable frequency-band tokens;
+- a **temporal-spatial (TS)** based on convolutional patch embedding and a criss-cross Transformer;
+- a **spectral-spatial (SS) branch** based on interpretable frequency-band tokens;
 - masked reconstruction objectives for both branches;
 - a cross-branch alignment objective;
 - fused representations for downstream EEG classification.
