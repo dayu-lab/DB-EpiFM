@@ -55,7 +55,7 @@ def main():
     
   
     parser.add_argument('--need_mask', type=str2bool, nargs='?', const=True, default=True, help='enable masked pretraining (default: true)')
-    parser.add_argument('--mask_ratio', type=float, default=0.5, help='random temporal-spatial mask ratio')
+    parser.add_argument('--mask_ratio', type=float, default=0.15, help='random temporal-spatial mask ratio')
 
     # Spatial-Frequency (band-token) MAE & alignment losses
     # (keep old arg name for compatibility)
@@ -68,7 +68,7 @@ def main():
         help='comma-separated band ranges, e.g. "0.5-4,4-8,8-13,13-30,30-45"',
     )
     parser.add_argument('--lambda_f', type=float, default=1.0, help='weight for frequency reconstruction loss')
-    parser.add_argument('--lambda_align', type=float, default=0.15, help='weight for alignment loss')
+    parser.add_argument('--lambda_align', type=float, default=0.1, help='weight for alignment loss')
 
     parser.add_argument('--dataset_dir', type=str, default='./data/processed/pretraining/tuep_tusz_no_tuab_tuev_overlap.lmdb',
                         help='dataset_dir')
