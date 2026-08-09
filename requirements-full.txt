@@ -1,7 +1,8 @@
-# Complete environment snapshot supplied by the project author.
+# Core environment reported in the revised manuscript:
+# Python 3.11.7, PyTorch 2.1.2, CUDA 12.1.
 # This file is intentionally platform-specific and includes development tools.
-# PyTorch CUDA 12.6 wheels are hosted on the official PyTorch package index.
---extra-index-url https://download.pytorch.org/whl/cu126
+# PyTorch CUDA 12.1 wheels are hosted on the official PyTorch package index.
+--extra-index-url https://download.pytorch.org/whl/cu121
 
 annexremote==0.0.0
 anyio==4.13.0
