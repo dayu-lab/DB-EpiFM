@@ -1,44 +1,22 @@
 # Reproducibility Environment
 
-The package versions in this repository were locked from the author's
-`yj_cbramod` environment.
+This document describes the software and hardware environment used for
+the experiments reported in the DB-EpiFM paper.
 
-## Core platform
+## Core Software Environment
 
-- PyTorch: `2.9.0+cu126`
-- Torchvision: `0.24.0+cu126`
-- PyTorch wheel CUDA runtime: `12.6`
-- Operating-system family: Windows (the full snapshot contains Windows-only packages)
-- Python version: **not included in the supplied `pip list` output**. Before the
-  public release, record it with `python --version` and add it here.
+- Python: 3.11.7
+- PyTorch: 2.1.2
+- CUDA: 12.1
+
+## Hardware
+
+ NVIDIA GeForce RTX 4090 GPU with 24 GB memory.
 
 ## Installation
 
-For the dependencies required by the DB-EpiFM source code:
+Create the Python environment:
 
 ```bash
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-```
-
-For the complete package snapshot of the original experiment environment:
-
-```bash
-python -m pip install --upgrade pip
-python -m pip install -r requirements-full.txt
-```
-
-`requirements-full.txt` is platform-specific and contains development,
-Jupyter, DataLad, AWS, and Windows support packages that are not required by
-the core training code. For most users, `requirements.txt` is recommended.
-
-## Verifying the environment
-
-```bash
-python --version
-python -c "import torch; print(torch.__version__); print(torch.version.cuda); print(torch.cuda.is_available())"
-python -m pip check
-```
-
-The CUDA wheel tag records the runtime bundled with PyTorch; the NVIDIA driver
-must independently support CUDA 12.6.
+conda create -n db-epifm python=3.11.7 -y
+conda activate db-epifm
