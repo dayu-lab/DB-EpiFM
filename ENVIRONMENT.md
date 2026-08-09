@@ -1,7 +1,3 @@
-# Reproducibility Environment
-
-This document describes the software and hardware environment used for
-the experiments reported in the DB-EpiFM paper.
 
 ## Core Software Environment
 
