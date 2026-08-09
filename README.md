@@ -82,7 +82,7 @@ pip install torch==2.1.2 --index-url https://download.pytorch.org/whl/cu121
 ```
 Then install the remaining dependencies:
 ```bash
-pip install -r requirements.txt
+pip install -r requirements-full.txt
 ```
 ## Data Preparation
 
