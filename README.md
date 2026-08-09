@@ -279,18 +279,6 @@ python finetune_main.py \
 ```
 
 
-## Reproducing the Paper Results
-
-Add the final experimental protocol and results here:
-
-| Dataset | Task | Metrics | Reported result |
-|---|---|---|---|
-| TUAB | Normal/abnormal classification | Balanced Accuracy, AUROC | To be added |
-| TUEV | Three-class event classification | Balanced Accuracy, Cohen's Kappa | To be added |
-| CHB-MIT | Seizure/non-seizure classification | Balanced Accuracy, AUROC | To be added |
-
-For every result, report the dataset version, subject-level split, random seeds, number of runs, checkpoint-selection rule, mean, standard deviation, and exact evaluation command.
-
 ## Data-Leakage Audit
 
 Data-leakage audit materials are provided in:
