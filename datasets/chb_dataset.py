@@ -62,7 +62,9 @@ class CustomDataset(Dataset):
     def __getitem__(self, idx):
         with open(self.files[idx], "rb") as stream:
             data_dict = pickle.load(stream)
-        data = signal.resample(data_dict["X"], 2000, axis=1)
+        data = data_dict["X"]
+        if data.shape[1] != 2000:
+            data = signal.resample(data, 2000, axis=1)
         return data.reshape(16, 10, 200) / 100, data_dict["y"]
 
     @staticmethod

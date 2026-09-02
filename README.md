@@ -413,14 +413,24 @@ three subsets, and every patient group appears in the held-out test partition
 of exactly one fold. The fixed fold definitions are provided in
 `splits/chbmit_patient_5fold.json`.
 
-EEG signals are segmented into non-overlapping 10-s windows. A window is
-labeled as seizure if it has a positive overlap with an annotated seizure
-interval.
+The preprocessing script discovers all available `chb??` case directories,
+including `chb12`, `chb13`, and `chb17`. Signals are converted to the fixed
+16-channel bipolar montage, resampled to 200 Hz, band-pass filtered at
+0.3–75 Hz, and notch filtered at 60 Hz before segmentation into
+non-overlapping 10-s windows. A window is labeled as seizure if it has a
+positive overlap with an annotated seizure interval.
 
 Each sample is stored as:
 
 ```python
-{"X": eeg_signal, "y": label}
+{
+    "X": eeg_signal,
+    "y": label,
+    "case_id": case_id,
+    "recording_id": recording_id,
+    "sampling_rate": 200,
+    "unit": "uV"
+}
 ```
 
 ---
