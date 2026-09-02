@@ -398,18 +398,24 @@ The final processed dataset is stored under:
 
 ```text
 data/processed/chbmit/process_2/
-├── train/
-├── val/
-└── test/
+└── by_subject/
+    ├── chb01/
+    ├── chb02/
+    └── ...
 ```
 
-The patient-independent split is:
+CHB-MIT is evaluated using patient-level five-fold cross-validation. Cases
+corresponding to the same subject are grouped before partitioning. In
+particular, `chb01` and `chb21`, which correspond to recordings from the same
+subject, are assigned to the same patient group and are never separated across
+training, validation, or test subsets. No patient group is shared across the
+three subsets, and every patient group appears in the held-out test partition
+of exactly one fold. The fixed fold definitions are provided in
+`splits/chbmit_patient_5fold.json`.
 
-- training: `chb01`–`chb20`
-- validation: `chb21`–`chb22`
-- testing: `chb23`–`chb24`
-
-EEG signals are segmented into 10-s windows. Windows overlapping an annotated seizure interval are labeled as seizure. Additional seizure windows are sampled with a 5-s stride around the annotated seizure interval, including 1 s before seizure onset and 1 s after seizure offset.
+EEG signals are segmented into non-overlapping 10-s windows. A window is
+labeled as seizure if it has a positive overlap with an annotated seizure
+interval.
 
 Each sample is stored as:
 
@@ -507,6 +513,7 @@ python finetune_main.py \
 python finetune_main.py \
     --downstream_dataset CHB-MIT \
     --datasets_dir ./data/processed/chbmit/process_2 \
+    --split_manifest ./splits/chbmit_patient_5fold.json \
     --num_of_classes 2 \
     --foundation_dir ./checkpoints/DB-EpiFM_pretrain.pth \
     --model_dir ./outputs/finetuning/chbmit \
@@ -519,6 +526,12 @@ python finetune_main.py \
     --frozen false \
     --multi_lr true
 ```
+
+For CHB-MIT, omitting `--fold` runs all five patient-level folds for the
+specified seed. To run only one fold, add `--fold 1` (or another fold number
+from 1 to 5). Each manuscript run consists of a complete five-fold
+cross-validation. The five held-out test-fold scores are averaged to obtain
+one run-level result.
 
 ### TUEV: three-class epileptiform-event classification
 
@@ -545,7 +558,11 @@ The random seed can be controlled with:
 --seed <seed>
 ```
 
-The main comparative experiments in the manuscript were evaluated over ten independent runs using the same set of random seeds across methods.
+The main comparative experiments in the manuscript were evaluated over ten
+independent runs using the same set of random seeds across methods. For
+CHB-MIT, each of these runs contains all five patient-level folds, and the
+reported mean and standard deviation are calculated over the ten run-level
+results.
 
 ---
 

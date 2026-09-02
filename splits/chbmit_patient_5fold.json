@@ -1,0 +1,10 @@
+{
+  "subject_mapping": {"subject_01": ["chb01", "chb21"]},
+  "folds": [
+    {"fold": 1, "train": ["subject_03", "subject_04", "subject_05", "subject_06", "subject_09", "subject_12", "subject_13", "subject_15", "subject_16", "subject_17", "subject_19", "subject_20", "subject_22", "subject_23", "subject_24"], "val": ["subject_08", "subject_14", "subject_18"], "test": ["subject_01", "subject_02", "subject_07", "subject_10", "subject_11"]},
+    {"fold": 2, "train": ["subject_02", "subject_03", "subject_04", "subject_06", "subject_07", "subject_10", "subject_12", "subject_13", "subject_14", "subject_15", "subject_16", "subject_18", "subject_19", "subject_22", "subject_23"], "val": ["subject_01", "subject_09", "subject_11"], "test": ["subject_05", "subject_08", "subject_17", "subject_20", "subject_24"]},
+    {"fold": 3, "train": ["subject_02", "subject_03", "subject_05", "subject_06", "subject_07", "subject_08", "subject_10", "subject_12", "subject_14", "subject_15", "subject_16", "subject_17", "subject_19", "subject_20", "subject_24"], "val": ["subject_01", "subject_09", "subject_11"], "test": ["subject_04", "subject_13", "subject_18", "subject_22", "subject_23"]},
+    {"fold": 4, "train": ["subject_01", "subject_02", "subject_03", "subject_04", "subject_06", "subject_07", "subject_08", "subject_10", "subject_11", "subject_12", "subject_16", "subject_17", "subject_18", "subject_20", "subject_22", "subject_24"], "val": ["subject_05", "subject_13", "subject_23"], "test": ["subject_09", "subject_14", "subject_15", "subject_19"]},
+    {"fold": 5, "train": ["subject_01", "subject_02", "subject_04", "subject_05", "subject_07", "subject_08", "subject_09", "subject_10", "subject_13", "subject_14", "subject_15", "subject_17", "subject_19", "subject_20", "subject_22", "subject_23"], "val": ["subject_11", "subject_18", "subject_24"], "test": ["subject_03", "subject_06", "subject_12", "subject_16"]}
+  ]
+}

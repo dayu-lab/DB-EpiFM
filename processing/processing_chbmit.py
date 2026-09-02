@@ -4,7 +4,6 @@ import numpy as np
 from collections import defaultdict
 import pyedflib
 import pyedflib.highlevel as hl
-import shutil
 import multiprocessing as mp
 from tqdm import tqdm
 
@@ -254,43 +253,26 @@ def sub_to_segments_stage2(params):
                 # 判断片段是否包含癫痫发作
                 label = 0
 
+                segment_end = i + 10 * SAMPLING_RATE
                 for seizure_time in seizure_times:
-                    if (
-                        i < seizure_time[0] < i + 10 * SAMPLING_RATE
-                        or i < seizure_time[1] < i + 10 * SAMPLING_RATE
-                    ):
+                    if i < seizure_time[1] and segment_end > seizure_time[0]:
                         label = 1
                         break
 
                 # 保存片段
                 pickle.dump(
-                    {"X": segment, "y": label},
+                    {
+                        "X": segment,
+                        "y": label,
+                        "case_id": folder,
+                        "recording_id": f.split(".pkl")[0],
+                        "window_start_sample": i,
+                    },
                     open(
                         os.path.join(out_folder, f"{f.split('.')[0]}-{i}.pkl"),
                         "wb",
                     ),
                 )
-
-        # 为癫痫发作期间添加额外的片段
-        for idx, seizure_time in enumerate(seizure_times):
-            for i in range(
-                max(0, seizure_time[0] - SAMPLING_RATE),
-                min(seizure_time[1] + SAMPLING_RATE, signal.shape[1]),
-                5 * SAMPLING_RATE,
-            ):
-                segment = signal[:, i : i + 10 * SAMPLING_RATE]
-                if segment.shape[1] == 10 * SAMPLING_RATE:
-                    label = 1
-                    # 保存片段
-                    pickle.dump(
-                        {"X": segment, "y": label},
-                        open(
-                            os.path.join(
-                                out_folder, f"{f.split('.')[0]}-s-{idx}-add-{i}.pkl"
-                            ),
-                            "wb",
-                        ),
-                    )
 
 # ============================
 # 主函数
@@ -333,14 +315,6 @@ def main():
         ("19", "02", 1, 30, 1),
     ]
 
-    # 第二阶段数据集划分
-    test_pats = ["chb23", "chb24"]
-    val_pats = ["chb21", "chb22"]
-    train_pats = [
-        "chb01", "chb02", "chb03", "chb04", "chb05", "chb06", "chb07", "chb08", "chb09", "chb10",
-        "chb11", "chb12", "chb13", "chb14", "chb15", "chb16", "chb17", "chb18", "chb19", "chb20",
-    ]
-    
     # 标准通道列表
     channels_list = [
         "FP1-F7", "F7-T7", "T7-P7", "P7-O1", "FP2-F8", "F8-T8", "T8-P8", "P8-O2",
@@ -358,19 +332,15 @@ def main():
         pool.map(start_process_stage1, stage1_params)
     
     print("第一阶段处理完成！")
-    print("开始第二阶段处理：数据分段和数据集划分...")
+    print("开始第二阶段处理：生成按病例组织的非重叠10秒窗口...")
     
     # 第二阶段参数准备
     folders = os.listdir(clean_path)
     stage2_params = []
     
     for folder in folders:
-        if folder in test_pats:
-            out_folder = os.path.join(out_path, "test")
-        elif folder in val_pats:
-            out_folder = os.path.join(out_path, "val")
-        else:
-            out_folder = os.path.join(out_path, "train")
+        # Patient-level folds are applied later from the released manifest.
+        out_folder = os.path.join(out_path, "by_subject", folder)
 
         if not os.path.exists(out_folder):
             os.makedirs(out_folder)

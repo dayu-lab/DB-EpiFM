@@ -1,17 +1,19 @@
 import argparse
+import copy
+import json
+import os
 import random
+from pathlib import Path
 
 import numpy as np
 import torch
 
-from datasets import  tuab_dataset, tusl_dataset,chb_dataset, tuev_dataset
+from datasets import chb_dataset, tuab_dataset, tuev_dataset
 from finetune_trainer import Trainer
-from models import model_for_tuab, model_for_tusl,model_for_chb, model_for_tuev
+from models import model_for_chb, model_for_tuab, model_for_tuev
 
-from pathlib import Path
 
 def str2bool(value):
-    """Parse common command-line Boolean representations safely."""
     if isinstance(value, bool):
         return value
     normalized = value.strip().lower()
@@ -19,98 +21,7 @@ def str2bool(value):
         return True
     if normalized in {"0", "false", "f", "no", "n", "off"}:
         return False
-    raise argparse.ArgumentTypeError(
-        f"Expected a Boolean value, but received {value!r}. "
-        "Use true/false, yes/no, on/off, or 1/0."
-    )
-
-
-def main():
-    parser = argparse.ArgumentParser(description='Big model downstream')
-    parser.add_argument('--seed', type=int, default=3407, help='random seed (default: 0)')
-    parser.add_argument('--cuda', type=int, default=0, help='cuda number (default: 1)')
-    parser.add_argument('--epochs', type=int, default=50, help='number of epochs (default: 50)')
-    parser.add_argument('--batch_size', type=int, default=32, help='batch size for training (default: 32)')
-    parser.add_argument('--lr', type=float, default=1e-5, help='learning rate (default: 1e-3)')
-    parser.add_argument('--weight_decay', type=float, default=1e-2, help='weight decay (default: 1e-2)')
-    parser.add_argument('--optimizer', type=str, default='AdamW', help='optimizer (AdamW, SGD)')
-    parser.add_argument('--clip_value', type=float, default=1, help='clip_value,default=1')
-    parser.add_argument('--dropout', type=float, default=0.3, help='dropout')
-    parser.add_argument('--classifier', type=str, default='all_patch_reps',
-                        help='[all_patch_reps, all_patch_reps_twolayer, '
-                             'all_patch_reps_onelayer, avgpooling_patch_reps]')
-
-    # all_patch_reps: use all patch features with a three-layer classifier;
-    # all_patch_reps_twolayer: use all patch features with a two-layer classifier;
-    # all_patch_reps_onelayer: use all patch features with a one-layer classifier;
-    # avgpooling_patch_reps: use average pooling for patch features;
-
-    """############ Downstream dataset settings ############"""
-    parser.add_argument('--downstream_dataset', type=str, default='TUEV',
-                        help='[ TUAB, TUSL, TUSZ,CHB-MIT,TUEV]')
-    parser.add_argument('--datasets_dir', type=str,
-                        default='./data/processed/tuev_3class',
-                        help='datasets_dir')
-    parser.add_argument('--num_of_classes', type=int, default=3, help='number of classes')
-    #微调后的模型权重保存路径
-    parser.add_argument('--model_dir', type=str, default='./outputs/finetuning/tuev_0.15_0.15', help='model_dir')
-    """############ Downstream dataset settings ############"""
-
-    parser.add_argument('--num_workers', type=int, default=16, help='num_workers')
-    parser.add_argument('--label_smoothing', type=float, default=0.1, help='label_smoothing')
-    parser.add_argument('--multi_lr', type=str2bool, nargs='?', const=True, default=True,
-                        help='use different learning rates for different modules (default: true)')  # set different learning rates for different modules
-    parser.add_argument('--frozen', type=str2bool, nargs='?', const=True, default=False, help='freeze the pretrained backbone (default: false)')
-    parser.add_argument('--use_pretrained_weights', type=str2bool, nargs='?', const=True,
-                        default=True, help='load pretrained backbone weights (default: true)')
-    #输入预训练出来的权重
-    parser.add_argument('--foundation_dir', type=str,
-                        default='./checkpoints/DB-EpiFM_pretrain.pth',
-                        help='foundation_dir')
-
-    params = parser.parse_args()
-    if params.use_pretrained_weights:
-    checkpoint_path = Path(params.foundation_dir).expanduser()
-
-    if not checkpoint_path.is_file():
-        raise FileNotFoundError(
-            "The pretrained DB-EpiFM checkpoint was not found at "
-            f"{checkpoint_path}. Run "
-            "`python scripts/download_pretrained.py` "
-            "or provide the correct path with `--foundation_dir`."
-        )
-
-    params.foundation_dir = str(checkpoint_path)
-    print(params)
-
-    setup_seed(params.seed)
-    torch.cuda.set_device(params.cuda)
-    print('The downstream dataset is {}'.format(params.downstream_dataset))
-
-    # 根据数据集选择对应的数据加载器和模型
-    if params.downstream_dataset == 'TUAB':
-        load_dataset = tuab_dataset.LoadDataset(params)
-        data_loader = load_dataset.get_data_loader()
-        model = model_for_tuab.Model(params)
-        t = Trainer(params, data_loader, model)
-        t.train_for_binaryclass()
-    elif params.downstream_dataset == 'CHB-MIT':# 添加CHB分支
-        load_dataset = chb_dataset.LoadDataset(params)
-        data_loader = load_dataset.get_data_loader()
-        model = model_for_chb.Model(params)
-        t = Trainer(params, data_loader, model)
-        t.train_for_binaryclass()  
-
-    elif params.downstream_dataset == 'TUEV':
-        load_dataset = tuev_dataset.LoadDataset(params)
-        data_loader = load_dataset.get_data_loader()
-        model = model_for_tuev.Model(params)
-        t = Trainer(params, data_loader, model)
-        t.train_for_multiclass()
-    else:
-        raise ValueError(f"不支持的dataset: {params.downstream_dataset}")
-    
-
+    raise argparse.ArgumentTypeError(f"Expected a Boolean value, received {value!r}")
 
 
 def setup_seed(seed):
@@ -121,5 +32,108 @@ def setup_seed(seed):
     torch.backends.cudnn.deterministic = True
 
 
-if __name__ == '__main__':
+def build_parser():
+    parser = argparse.ArgumentParser(description="DB-EpiFM downstream fine-tuning")
+    parser.add_argument("--seed", type=int, default=3407)
+    parser.add_argument("--cuda", type=int, default=0)
+    parser.add_argument("--epochs", type=int, default=50)
+    parser.add_argument("--batch_size", type=int, default=32)
+    parser.add_argument("--lr", type=float, default=1e-5)
+    parser.add_argument("--weight_decay", type=float, default=1e-2)
+    parser.add_argument("--optimizer", type=str, default="AdamW")
+    parser.add_argument("--clip_value", type=float, default=1)
+    parser.add_argument("--dropout", type=float, default=0.3)
+    parser.add_argument("--classifier", type=str, default="all_patch_reps")
+    parser.add_argument("--downstream_dataset", type=str, default="TUEV",
+                        choices=["TUAB", "CHB-MIT", "TUEV"])
+    parser.add_argument("--datasets_dir", type=str,
+                        default="./data/processed/tuev_3class")
+    parser.add_argument("--num_of_classes", type=int, default=3)
+    parser.add_argument("--model_dir", type=str,
+                        default="./outputs/finetuning/tuev")
+    parser.add_argument("--num_workers", type=int, default=16)
+    parser.add_argument("--label_smoothing", type=float, default=0.1)
+    parser.add_argument("--multi_lr", type=str2bool, nargs="?", const=True,
+                        default=True)
+    parser.add_argument("--frozen", type=str2bool, nargs="?", const=True,
+                        default=False)
+    parser.add_argument("--use_pretrained_weights", type=str2bool, nargs="?",
+                        const=True, default=True)
+    parser.add_argument("--foundation_dir", type=str,
+                        default="./checkpoints/DB-EpiFM_pretrain.pth")
+    parser.add_argument("--fold", type=int, choices=range(1, 6), default=None,
+                        help="Run one CHB-MIT fold; omit to run all five folds")
+    parser.add_argument("--split_manifest", type=str,
+                        default="./splits/chbmit_patient_5fold.json")
+    return parser
+
+
+def validate_checkpoint(params):
+    if not params.use_pretrained_weights:
+        return
+    checkpoint_path = Path(params.foundation_dir).expanduser()
+    if not checkpoint_path.is_file():
+        raise FileNotFoundError(
+            f"Pretrained checkpoint not found: {checkpoint_path}. "
+            "Provide the correct path with --foundation_dir."
+        )
+    params.foundation_dir = str(checkpoint_path)
+
+
+def run_single(params):
+    setup_seed(params.seed)
+    if params.downstream_dataset == "TUAB":
+        loader = tuab_dataset.LoadDataset(params).get_data_loader()
+        model = model_for_tuab.Model(params)
+    elif params.downstream_dataset == "CHB-MIT":
+        loader = chb_dataset.LoadDataset(params).get_data_loader()
+        model = model_for_chb.Model(params)
+    else:
+        loader = tuev_dataset.LoadDataset(params).get_data_loader()
+        model = model_for_tuev.Model(params)
+    trainer = Trainer(params, loader, model)
+    if params.downstream_dataset == "TUEV":
+        return trainer.train_for_multiclass()
+    return trainer.train_for_binaryclass()
+
+
+def run_chbmit_folds(params):
+    folds = [params.fold] if params.fold else [1, 2, 3, 4, 5]
+    fold_results = []
+    for fold in folds:
+        fold_params = copy.deepcopy(params)
+        fold_params.fold = fold
+        fold_params.model_dir = os.path.join(params.model_dir, f"fold_{fold}")
+        print(f"Starting CHB-MIT fold {fold} with seed {params.seed}")
+        result = run_single(fold_params)
+        result["fold"] = fold
+        fold_results.append(result)
+
+    summary = {
+        metric: float(np.mean([item[metric] for item in fold_results]))
+        for metric in ("balanced_accuracy", "sensitivity", "specificity")
+    }
+    summary["balanced_accuracy"] = (
+        summary["sensitivity"] + summary["specificity"]
+    ) / 2.0
+    output = {"seed": params.seed, "folds": fold_results, "run_level": summary}
+    os.makedirs(params.model_dir, exist_ok=True)
+    with open(os.path.join(params.model_dir, "run_level_metrics.json"), "w",
+              encoding="utf-8") as stream:
+        json.dump(output, stream, indent=2)
+    print("CHB-MIT run-level result:", summary)
+    return output
+
+
+def main():
+    params = build_parser().parse_args()
+    validate_checkpoint(params)
+    torch.cuda.set_device(params.cuda)
+    if params.downstream_dataset == "CHB-MIT":
+        run_chbmit_folds(params)
+    else:
+        run_single(params)
+
+
+if __name__ == "__main__":
     main()

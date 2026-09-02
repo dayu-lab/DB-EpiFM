@@ -165,6 +165,9 @@ class Trainer(object):
             print("model save in " + model_path)
 
     def train_for_binaryclass(self):
+        if self.params.downstream_dataset == 'CHB-MIT':
+            return self.train_for_chbmit()
+
         acc_best = 0
         roc_auc_best = 0
         pr_auc_best = 0
@@ -240,6 +243,78 @@ class Trainer(object):
             )
             torch.save(self.model.state_dict(), model_path)
             print("model save in " + model_path)
+
+        return {
+            "balanced_accuracy": acc,
+            "auc_pr": pr_auc,
+            "auroc": roc_auc,
+        }
+
+    def train_for_chbmit(self):
+        best_balanced_accuracy = -1.0
+        best_epoch = 0
+
+        for epoch in range(self.params.epochs):
+            self.model.train()
+            start_time = timer()
+            losses = []
+            for x, y in tqdm(self.data_loader['train'], mininterval=10):
+                self.optimizer.zero_grad()
+                x = x.cuda().float()
+                y = y.cuda().float()
+                pred = self.model(x)
+                loss = self.criterion(pred, y)
+                loss.backward()
+                losses.append(loss.detach().cpu().item())
+                if self.params.clip_value > 0:
+                    torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.params.clip_value)
+                self.optimizer.step()
+                self.optimizer_scheduler.step()
+
+            with torch.no_grad():
+                balanced_accuracy, sensitivity, specificity, cm = (
+                    self.val_eval.get_metrics_for_chbmit(self.model)
+                )
+            print(
+                "Epoch {}: loss={:.5f}, balanced_accuracy={:.5f}, "
+                "sensitivity={:.5f}, specificity={:.5f}, time={:.2f} mins".format(
+                    epoch + 1, np.mean(losses), balanced_accuracy, sensitivity,
+                    specificity, (timer() - start_time) / 60
+                )
+            )
+            print(cm)
+            if balanced_accuracy > best_balanced_accuracy:
+                best_epoch = epoch + 1
+                best_balanced_accuracy = balanced_accuracy
+                self.best_model_states = copy.deepcopy(self.model.state_dict())
+
+        if self.best_model_states is None:
+            raise RuntimeError("CHB-MIT training did not produce a checkpoint")
+        self.model.load_state_dict(self.best_model_states)
+        with torch.no_grad():
+            balanced_accuracy, sensitivity, specificity, cm = (
+                self.test_eval.get_metrics_for_chbmit(self.model)
+            )
+        # All three metrics above are derived from this same confusion matrix.
+        if not np.isclose(balanced_accuracy, (sensitivity + specificity) / 2.0):
+            raise AssertionError("Balanced accuracy identity is violated")
+        print(
+            "CHB-MIT test: balanced_accuracy={:.5f}, sensitivity={:.5f}, "
+            "specificity={:.5f}".format(
+                balanced_accuracy, sensitivity, specificity
+            )
+        )
+        print(cm)
+        os.makedirs(self.params.model_dir, exist_ok=True)
+        torch.save(
+            self.model.state_dict(),
+            os.path.join(self.params.model_dir, f"epoch{best_epoch}_chbmit.pth"),
+        )
+        return {
+            "balanced_accuracy": balanced_accuracy,
+            "sensitivity": sensitivity,
+            "specificity": specificity,
+        }
 
     def train_for_regression(self):
         corrcoef_best = 0
