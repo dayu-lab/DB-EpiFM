@@ -447,6 +447,16 @@ DB-EpiFM uses the following three epileptiform-event categories from TUEV:
 
 Eye movement, artifact, and background categories are excluded.
 
+TUEV annotations are provided at the channel level. To construct
+event-level samples, retained annotations are deduplicated using the
+pair of recording file and event-center second. Annotation rows from
+multiple channels that correspond to the same event therefore produce
+one 16-channel EEG sample.
+
+For every unique SPSW, GPED, or PLED event, a fixed 10-s multichannel
+window centered on the event is extracted. Eye movement, artifact, and
+background annotations are excluded.
+
 The preprocessing script expects:
 
 ```text
@@ -469,6 +479,23 @@ data/processed/tuev_3class/processed/
 ```
 
 The official training partition is divided into patient-disjoint training and validation subsets using an 80:20 split. The official evaluation partition is retained as the test set.
+
+After event-level deduplication and patient-level partitioning, the
+three-class TUEV dataset contains:
+
+| Split | SPSW | GPED | PLED | Total |
+|---|---:|---:|---:|---:|
+| Training | 128 (3.7%) | 1,931 (56.0%) | 1,392 (40.3%) | 3,451 |
+| Validation | 13 (1.1%) | 493 (43.1%) | 637 (55.7%) | 1,143 |
+| Test | 46 (2.9%) | 822 (52.2%) | 707 (44.9%) | 1,575 |
+| Total | 187 | 3,246 | 2,736 | 6,169 |
+
+The preprocessing summary records the number of original channel-level
+annotation rows, retained three-class rows, duplicate channel rows
+removed during event-level deduplication, unique events, and final
+class counts. Label conflicts associated with the same recording and
+event-center second are treated as errors rather than being resolved
+silently.
 
 Each sample contains:
 

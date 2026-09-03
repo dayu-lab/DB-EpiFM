@@ -1,3 +1,4 @@
+import math
 import pickle
 import shutil
 from pathlib import Path
@@ -38,6 +39,158 @@ REMOVED_TUEV_LABELS = {
     5: "artf",
     6: "bckg",
 }
+
+EXPECTED_TUEV_COUNTS = {
+    "processed_train": {
+        0: 128,
+        1: 1931,
+        2: 1392,
+        "total": 3451,
+    },
+    "processed_eval": {
+        0: 13,
+        1: 493,
+        2: 637,
+        "total": 1143,
+    },
+    "processed_test": {
+        0: 46,
+        1: 822,
+        2: 707,
+        "total": 1575,
+    },
+}
+
+
+def canonical_center_second(start_sec: float, end_sec: float) -> int:
+    """Return the integer event-center second used for deduplication.
+
+    ``floor(x + 0.5)`` is used instead of Python's built-in ``round`` to
+    avoid banker's rounding at values ending in exactly 0.5.
+    """
+    if not np.isfinite(start_sec) or not np.isfinite(end_sec):
+        raise ValueError(
+            f"Non-finite TUEV event interval: start={start_sec}, end={end_sec}"
+        )
+
+    if start_sec < 0 or end_sec <= start_sec:
+        raise ValueError(
+            f"Invalid TUEV event interval: start={start_sec}, end={end_sec}"
+        )
+
+    center_sec = 0.5 * (start_sec + end_sec)
+    return int(math.floor(center_sec + 0.5))
+
+
+def deduplicate_events(
+    event_data: np.ndarray,
+    file_name: str,
+):
+    """Deduplicate channel-level TUEV annotations into event-level records.
+
+    The manuscript defines one event by the pair:
+
+        (recording file, event-center second)
+
+    Multiple annotation rows from different channels that share this key
+    are converted into one multichannel EEG sample.
+    """
+    unique_events = {}
+    skipped_labels = {label: 0 for label in REMOVED_TUEV_LABELS}
+
+    audit = {
+        "annotation_rows_total": 0,
+        "retained_three_class_rows": 0,
+        "duplicate_channel_rows_removed": 0,
+        "unique_events_after_deduplication": 0,
+        "label_conflicts": [],
+    }
+
+    if len(event_data) == 0:
+        return [], skipped_labels, audit
+
+    for row_idx, row in enumerate(event_data):
+        audit["annotation_rows_total"] += 1
+
+        if len(row) < 4:
+            continue
+
+        offending_channel = int(row[0])
+        start_sec = float(row[1])
+        end_sec = float(row[2])
+        label_tuev = int(row[3])
+
+        if label_tuev not in KEEP_TUEV_LABELS:
+            if label_tuev in skipped_labels:
+                skipped_labels[label_tuev] += 1
+            continue
+
+        audit["retained_three_class_rows"] += 1
+
+        center_sec = 0.5 * (start_sec + end_sec)
+        center_second = canonical_center_second(
+            start_sec=start_sec,
+            end_sec=end_sec,
+        )
+
+        event_key = (file_name, center_second)
+
+        candidate = {
+            "file_name": file_name,
+            "event_start_sec": start_sec,
+            "event_end_sec": end_sec,
+            "event_center_sec": center_sec,
+            "event_center_second": center_second,
+            "label_tuev": label_tuev,
+            "offending_channels": [offending_channel],
+            "source_annotation_rows": [row_idx],
+        }
+
+        if event_key not in unique_events:
+            unique_events[event_key] = candidate
+            continue
+
+        existing = unique_events[event_key]
+
+        if existing["label_tuev"] != label_tuev:
+            conflict = {
+                "file_name": file_name,
+                "event_center_second": center_second,
+                "existing_label": existing["label_tuev"],
+                "conflicting_label": label_tuev,
+                "existing_rows": existing["source_annotation_rows"],
+                "conflicting_row": row_idx,
+            }
+            audit["label_conflicts"].append(conflict)
+
+            raise ValueError(
+                "Conflicting TUEV labels for the same event-level key: "
+                f"{conflict}"
+            )
+
+        existing["offending_channels"].append(offending_channel)
+        existing["source_annotation_rows"].append(row_idx)
+        existing["event_start_sec"] = min(
+            existing["event_start_sec"], start_sec
+        )
+        existing["event_end_sec"] = max(
+            existing["event_end_sec"], end_sec
+        )
+        audit["duplicate_channel_rows_removed"] += 1
+
+    unique_event_list = sorted(
+        unique_events.values(),
+        key=lambda event: (
+            event["event_center_second"],
+            event["label_tuev"],
+        ),
+    )
+
+    for event in unique_event_list:
+        event["offending_channels"] = sorted(set(event["offending_channels"]))
+
+    audit["unique_events_after_deduplication"] = len(unique_event_list)
+    return unique_event_list, skipped_labels, audit
 
 
 # Current project-compatible 16-channel subset.
@@ -151,34 +304,33 @@ def build_event_samples(
     normalize: bool = False,
     clip_uv: float | None = None,
 ):
+    """Build one 16-channel sample for each unique TUEV event."""
     samples = []
-    skipped_labels = {label: 0 for label in REMOVED_TUEV_LABELS}
 
-    if len(event_data) == 0:
-        return samples, skipped_labels
+    unique_events, skipped_labels, dedup_audit = deduplicate_events(
+        event_data=event_data,
+        file_name=file_name,
+    )
+
+    if not unique_events:
+        return samples, skipped_labels, dedup_audit
 
     n_time = signals.shape[1]
-    for row_idx, row in enumerate(event_data):
-        if len(row) < 4:
-            continue
-
-        offending_channel = int(row[0])
-        start_sec = float(row[1])
-        end_sec = float(row[2])
-        label_tuev = int(row[3])
-
-        if label_tuev not in KEEP_TUEV_LABELS:
-            if label_tuev in skipped_labels:
-                skipped_labels[label_tuev] += 1
-            continue
-
+    for event in unique_events:
+        label_tuev = int(event["label_tuev"])
         label = KEEP_TUEV_LABELS[label_tuev]
 
-        center_sec = 0.5 * (start_sec + end_sec)
+        center_sec = float(event["event_center_sec"])
         center_idx = int(round(center_sec * TARGET_FS))
         center_idx = min(max(center_idx, 0), n_time - 1)
 
         window = safe_extract_fixed_window(signals, center_idx)
+
+        if window.shape[1] != WINDOW_SAMPLES:
+            raise RuntimeError(
+                "Unexpected TUEV window length: "
+                f"{window.shape[1]} != {WINDOW_SAMPLES}"
+            )
 
         if clip_uv is not None:
             window = np.clip(window, -clip_uv, clip_uv)
@@ -187,14 +339,16 @@ def build_event_samples(
             window = normalize_per_channel(window)
 
         sample = {
-            "signal": window.astype(np.float32),
+            "signal": window.astype(np.float32, copy=False),
             "label": int(label),
             "label_name": LABEL_NAMES[int(label)],
-            "label_tuev": int(label_tuev),
-            "offending_channel": int(offending_channel),
-            "event_start_sec": float(start_sec),
-            "event_end_sec": float(end_sec),
-            "event_center_sec": float(center_sec),
+            "label_tuev": label_tuev,
+            "event_start_sec": float(event["event_start_sec"]),
+            "event_end_sec": float(event["event_end_sec"]),
+            "event_center_sec": center_sec,
+            "event_center_second": int(event["event_center_second"]),
+            "offending_channels": event["offending_channels"],
+            "source_annotation_rows": event["source_annotation_rows"],
             "file_name": file_name,
             "patient_id": patient_id,
             "split": split_name,
@@ -203,7 +357,7 @@ def build_event_samples(
         }
         samples.append(sample)
 
-    return samples, skipped_labels
+    return samples, skipped_labels, dedup_audit
 
 
 def infer_patient_id(edf_path: Path, root_split_dir: Path) -> str:
@@ -232,9 +386,14 @@ def process_split(
         "files_success": 0,
         "files_skipped": 0,
         "files_no_kept_event": 0,
+        "annotation_rows_total": 0,
+        "retained_three_class_rows": 0,
+        "duplicate_channel_rows_removed": 0,
+        "unique_events_after_deduplication": 0,
         "samples_total": 0,
         "label_hist": {i: 0 for i in range(3)},
         "skipped_tuev_label_hist": {label: 0 for label in REMOVED_TUEV_LABELS},
+        "label_conflicts": [],
     }
 
     for edf_path in tqdm(all_edf, desc=f"Processing {split_name}"):
@@ -250,7 +409,7 @@ def process_split(
             signals_16 = convert_to_16ch(signals, ch_names)
             event_data = load_rec(rec_path)
             patient_id = infer_patient_id(edf_path, split_dir)
-            samples, skipped_labels = build_event_samples(
+            samples, skipped_labels, dedup_audit = build_event_samples(
                 signals=signals_16,
                 event_data=event_data,
                 file_name=edf_path.name,
@@ -267,13 +426,36 @@ def process_split(
         for label_tuev, count in skipped_labels.items():
             stats["skipped_tuev_label_hist"][label_tuev] += count
 
+        stats["annotation_rows_total"] += dedup_audit["annotation_rows_total"]
+        stats["retained_three_class_rows"] += dedup_audit[
+            "retained_three_class_rows"
+        ]
+        stats["duplicate_channel_rows_removed"] += dedup_audit[
+            "duplicate_channel_rows_removed"
+        ]
+        stats["unique_events_after_deduplication"] += dedup_audit[
+            "unique_events_after_deduplication"
+        ]
+        stats["label_conflicts"].extend(dedup_audit["label_conflicts"])
+
         if len(samples) == 0:
             stats["files_no_kept_event"] += 1
             continue
 
-        for idx, sample in enumerate(samples):
-            out_name = f"{patient_id}_{edf_path.stem}-event{idx:04d}.pkl"
-            save_pickle(sample, out_dir / out_name)
+        for sample in samples:
+            center_second = sample["event_center_second"]
+            out_name = (
+                f"{patient_id}_{edf_path.stem}"
+                f"_center{center_second:06d}.pkl"
+            )
+            output_path = out_dir / out_name
+
+            if output_path.exists():
+                raise FileExistsError(
+                    "Duplicate TUEV event output path: " f"{output_path}"
+                )
+
+            save_pickle(sample, output_path)
             stats["samples_total"] += 1
             stats["label_hist"][sample["label"]] += 1
 
@@ -328,6 +510,59 @@ def copy_eval_to_test(processed_eval_dir: Path, final_root: Path):
     return {"num_test_files": len(eval_files)}
 
 
+def count_final_tuev_samples(final_root: Path):
+    counts = {}
+
+    for split_name in (
+        "processed_train",
+        "processed_eval",
+        "processed_test",
+    ):
+        split_dir = final_root / split_name
+        label_hist = {0: 0, 1: 0, 2: 0}
+        files = sorted(split_dir.glob("*.pkl"))
+
+        for file_path in files:
+            with file_path.open("rb") as stream:
+                sample = pickle.load(stream)
+
+            label = int(sample["label"])
+            if label not in label_hist:
+                raise ValueError(f"Unexpected TUEV label {label} in {file_path}")
+            label_hist[label] += 1
+
+        counts[split_name] = {
+            **label_hist,
+            "total": len(files),
+        }
+
+    return counts
+
+
+def validate_final_tuev_counts(final_root: Path):
+    actual = count_final_tuev_samples(final_root)
+    errors = []
+
+    for split_name, expected in EXPECTED_TUEV_COUNTS.items():
+        observed = actual[split_name]
+
+        for key, expected_value in expected.items():
+            observed_value = observed[key]
+            if observed_value != expected_value:
+                errors.append(
+                    f"{split_name}, {key}: "
+                    f"expected={expected_value}, observed={observed_value}"
+                )
+
+    if errors:
+        raise RuntimeError(
+            "TUEV class distribution does not match the manuscript:\n"
+            + "\n".join(errors)
+        )
+
+    return actual
+
+
 def main():
     root = Path(ROOT_PATH)
     target = Path(TARGET_PATH)
@@ -371,6 +606,7 @@ def main():
         processed_eval_dir=temp_eval_dir,
         final_root=final_root,
     )
+    final_class_counts = validate_final_tuev_counts(final_root)
 
     summary = {
         "config": {
@@ -392,6 +628,7 @@ def main():
         "eval_raw_stats": eval_stats,
         "split_stats": split_stats,
         "test_stats": test_stats,
+        "final_class_counts": final_class_counts,
     }
 
     summary_path = target / "preprocess_summary.pkl"
