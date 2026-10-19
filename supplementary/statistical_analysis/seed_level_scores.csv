@@ -1,0 +1,721 @@
+dataset,model,metric,seed,score
+TUAB,EEGNet,Balanced Accuracy,3407,76.52
+TUAB,EEGNet,Balanced Accuracy,3410,76.08
+TUAB,EEGNet,Balanced Accuracy,3413,76.26
+TUAB,EEGNet,Balanced Accuracy,3416,76.22
+TUAB,EEGNet,Balanced Accuracy,3419,76.59
+TUAB,EEGNet,Balanced Accuracy,3422,76.55
+TUAB,EEGNet,Balanced Accuracy,2024,76.7
+TUAB,EEGNet,Balanced Accuracy,2025,76.12
+TUAB,EEGNet,Balanced Accuracy,2026,76.36
+TUAB,EEGNet,Balanced Accuracy,2027,76.08
+TUAB,EEGNet,AUC-PR,3407,82.75
+TUAB,EEGNet,AUC-PR,3410,82.99
+TUAB,EEGNet,AUC-PR,3413,82.58
+TUAB,EEGNet,AUC-PR,3416,82.73
+TUAB,EEGNet,AUC-PR,3419,83.12
+TUAB,EEGNet,AUC-PR,3422,83.03
+TUAB,EEGNet,AUC-PR,2024,82.75
+TUAB,EEGNet,AUC-PR,2025,83.07
+TUAB,EEGNet,AUC-PR,2026,83.26
+TUAB,EEGNet,AUC-PR,2027,82.57
+TUAB,EEGNet,AUROC,3407,84.31
+TUAB,EEGNet,AUROC,3410,84.24
+TUAB,EEGNet,AUROC,3413,84.02
+TUAB,EEGNet,AUROC,3416,83.91
+TUAB,EEGNet,AUROC,3419,84.4
+TUAB,EEGNet,AUROC,3422,84.02
+TUAB,EEGNet,AUROC,2024,83.87
+TUAB,EEGNet,AUROC,2025,83.87
+TUAB,EEGNet,AUROC,2026,84.34
+TUAB,EEGNet,AUROC,2027,84.18
+TUAB,ST-Transformer,Balanced Accuracy,3407,79.8
+TUAB,ST-Transformer,Balanced Accuracy,3410,79.77
+TUAB,ST-Transformer,Balanced Accuracy,3413,79.68
+TUAB,ST-Transformer,Balanced Accuracy,3416,79.88
+TUAB,ST-Transformer,Balanced Accuracy,3419,79.6
+TUAB,ST-Transformer,Balanced Accuracy,3422,79.68
+TUAB,ST-Transformer,Balanced Accuracy,2024,79.81
+TUAB,ST-Transformer,Balanced Accuracy,2025,79.71
+TUAB,ST-Transformer,Balanced Accuracy,2026,79.83
+TUAB,ST-Transformer,Balanced Accuracy,2027,79.7
+TUAB,ST-Transformer,AUC-PR,3407,85.32
+TUAB,ST-Transformer,AUC-PR,3410,84.97
+TUAB,ST-Transformer,AUC-PR,3413,85.07
+TUAB,ST-Transformer,AUC-PR,3416,85.1
+TUAB,ST-Transformer,AUC-PR,3419,84.99
+TUAB,ST-Transformer,AUC-PR,3422,85.07
+TUAB,ST-Transformer,AUC-PR,2024,85
+TUAB,ST-Transformer,AUC-PR,2025,85.09
+TUAB,ST-Transformer,AUC-PR,2026,85.28
+TUAB,ST-Transformer,AUC-PR,2027,85.14
+TUAB,ST-Transformer,AUROC,3407,87.02
+TUAB,ST-Transformer,AUROC,3410,86.96
+TUAB,ST-Transformer,AUROC,3413,86.98
+TUAB,ST-Transformer,AUROC,3416,87.24
+TUAB,ST-Transformer,AUROC,3419,87.13
+TUAB,ST-Transformer,AUROC,3422,87.11
+TUAB,ST-Transformer,AUROC,2024,86.95
+TUAB,ST-Transformer,AUROC,2025,87.16
+TUAB,ST-Transformer,AUROC,2026,86.94
+TUAB,ST-Transformer,AUROC,2027,87.02
+TUAB,BIOT,Balanced Accuracy,3407,80.15
+TUAB,BIOT,Balanced Accuracy,3410,79.75
+TUAB,BIOT,Balanced Accuracy,3413,79.65
+TUAB,BIOT,Balanced Accuracy,3416,79.8
+TUAB,BIOT,Balanced Accuracy,3419,79.98
+TUAB,BIOT,Balanced Accuracy,3422,79.9
+TUAB,BIOT,Balanced Accuracy,2024,79.28
+TUAB,BIOT,Balanced Accuracy,2025,79.06
+TUAB,BIOT,Balanced Accuracy,2026,79.38
+TUAB,BIOT,Balanced Accuracy,2027,79.33
+TUAB,BIOT,AUC-PR,3407,87.79
+TUAB,BIOT,AUC-PR,3410,88.12
+TUAB,BIOT,AUC-PR,3413,88.09
+TUAB,BIOT,AUC-PR,3416,87.83
+TUAB,BIOT,AUC-PR,3419,87.99
+TUAB,BIOT,AUC-PR,3422,87.87
+TUAB,BIOT,AUC-PR,2024,88.11
+TUAB,BIOT,AUC-PR,2025,87.9
+TUAB,BIOT,AUC-PR,2026,87.81
+TUAB,BIOT,AUC-PR,2027,87.8
+TUAB,BIOT,AUROC,3407,88.2
+TUAB,BIOT,AUROC,3410,87.95
+TUAB,BIOT,AUROC,3413,88.22
+TUAB,BIOT,AUROC,3416,88.49
+TUAB,BIOT,AUROC,3419,88.06
+TUAB,BIOT,AUROC,3422,87.91
+TUAB,BIOT,AUROC,2024,88.58
+TUAB,BIOT,AUROC,2025,88.16
+TUAB,BIOT,AUROC,2026,87.8
+TUAB,BIOT,AUROC,2027,87.76
+TUAB,EEGPT,Balanced Accuracy,3407,80.6
+TUAB,EEGPT,Balanced Accuracy,3410,80.91
+TUAB,EEGPT,Balanced Accuracy,3413,81.01
+TUAB,EEGPT,Balanced Accuracy,3416,80.78
+TUAB,EEGPT,Balanced Accuracy,3419,80.57
+TUAB,EEGPT,Balanced Accuracy,3422,80.76
+TUAB,EEGPT,Balanced Accuracy,2024,81.13
+TUAB,EEGPT,Balanced Accuracy,2025,80.85
+TUAB,EEGPT,Balanced Accuracy,2026,81.11
+TUAB,EEGPT,Balanced Accuracy,2027,81.05
+TUAB,EEGPT,AUC-PR,3407,88
+TUAB,EEGPT,AUC-PR,3410,88.3
+TUAB,EEGPT,AUC-PR,3413,88.29
+TUAB,EEGPT,AUC-PR,3416,88.23
+TUAB,EEGPT,AUC-PR,3419,88.11
+TUAB,EEGPT,AUC-PR,3422,88.27
+TUAB,EEGPT,AUC-PR,2024,88.05
+TUAB,EEGPT,AUC-PR,2025,88.18
+TUAB,EEGPT,AUC-PR,2026,88.19
+TUAB,EEGPT,AUC-PR,2027,88.4
+TUAB,EEGPT,AUROC,3407,89.72
+TUAB,EEGPT,AUROC,3410,89.1
+TUAB,EEGPT,AUROC,3413,89.34
+TUAB,EEGPT,AUROC,3416,89.02
+TUAB,EEGPT,AUROC,3419,89.75
+TUAB,EEGPT,AUROC,3422,89.71
+TUAB,EEGPT,AUROC,2024,89.14
+TUAB,EEGPT,AUROC,2025,89.48
+TUAB,EEGPT,AUROC,2026,89.45
+TUAB,EEGPT,AUROC,2027,88.99
+TUAB,LaBraM,Balanced Accuracy,3407,83.08
+TUAB,LaBraM,Balanced Accuracy,3410,82.6
+TUAB,LaBraM,Balanced Accuracy,3413,83.12
+TUAB,LaBraM,Balanced Accuracy,3416,82.58
+TUAB,LaBraM,Balanced Accuracy,3419,81.42
+TUAB,LaBraM,Balanced Accuracy,3422,82.13
+TUAB,LaBraM,Balanced Accuracy,2024,81.46
+TUAB,LaBraM,Balanced Accuracy,2025,83.45
+TUAB,LaBraM,Balanced Accuracy,2026,83.34
+TUAB,LaBraM,Balanced Accuracy,2027,83.23
+TUAB,LaBraM,AUC-PR,3407,89.86
+TUAB,LaBraM,AUC-PR,3410,89.48
+TUAB,LaBraM,AUC-PR,3413,90.72
+TUAB,LaBraM,AUC-PR,3416,90.83
+TUAB,LaBraM,AUC-PR,3419,89.52
+TUAB,LaBraM,AUC-PR,3422,90.13
+TUAB,LaBraM,AUC-PR,2024,89.5
+TUAB,LaBraM,AUC-PR,2025,90.55
+TUAB,LaBraM,AUC-PR,2026,90.55
+TUAB,LaBraM,AUC-PR,2027,89.59
+TUAB,LaBraM,AUROC,3407,91.2
+TUAB,LaBraM,AUROC,3410,91.29
+TUAB,LaBraM,AUROC,3413,90.95
+TUAB,LaBraM,AUROC,3416,91.67
+TUAB,LaBraM,AUROC,3419,91.14
+TUAB,LaBraM,AUROC,3422,90.89
+TUAB,LaBraM,AUROC,2024,91.28
+TUAB,LaBraM,AUROC,2025,91.5
+TUAB,LaBraM,AUROC,2026,90.88
+TUAB,LaBraM,AUROC,2027,91.01
+TUAB,CBraMod,Balanced Accuracy,3407,85.05
+TUAB,CBraMod,Balanced Accuracy,3410,84.8
+TUAB,CBraMod,Balanced Accuracy,3413,84.66
+TUAB,CBraMod,Balanced Accuracy,3416,84.71
+TUAB,CBraMod,Balanced Accuracy,3419,84.43
+TUAB,CBraMod,Balanced Accuracy,3422,84.51
+TUAB,CBraMod,Balanced Accuracy,2024,84.59
+TUAB,CBraMod,Balanced Accuracy,2025,84.76
+TUAB,CBraMod,Balanced Accuracy,2026,84.51
+TUAB,CBraMod,Balanced Accuracy,2027,84.5
+TUAB,CBraMod,AUC-PR,3407,88.06
+TUAB,CBraMod,AUC-PR,3410,88.26
+TUAB,CBraMod,AUC-PR,3413,88.11
+TUAB,CBraMod,AUC-PR,3416,88.36
+TUAB,CBraMod,AUC-PR,3419,88.34
+TUAB,CBraMod,AUC-PR,3422,88.06
+TUAB,CBraMod,AUC-PR,2024,88.12
+TUAB,CBraMod,AUC-PR,2025,88.27
+TUAB,CBraMod,AUC-PR,2026,88.11
+TUAB,CBraMod,AUC-PR,2027,88.08
+TUAB,CBraMod,AUROC,3407,90.36
+TUAB,CBraMod,AUROC,3410,90.28
+TUAB,CBraMod,AUROC,3413,90.26
+TUAB,CBraMod,AUROC,3416,90.33
+TUAB,CBraMod,AUROC,3419,90.33
+TUAB,CBraMod,AUROC,3422,90.21
+TUAB,CBraMod,AUROC,2024,90.19
+TUAB,CBraMod,AUROC,2025,90.26
+TUAB,CBraMod,AUROC,2026,90.25
+TUAB,CBraMod,AUROC,2027,90.26
+TUAB,EpilepsyFM,Balanced Accuracy,3407,86.18
+TUAB,EpilepsyFM,Balanced Accuracy,3410,86.17
+TUAB,EpilepsyFM,Balanced Accuracy,3413,86.26
+TUAB,EpilepsyFM,Balanced Accuracy,3416,86.01
+TUAB,EpilepsyFM,Balanced Accuracy,3419,86.09
+TUAB,EpilepsyFM,Balanced Accuracy,3422,86.08
+TUAB,EpilepsyFM,Balanced Accuracy,2024,86.22
+TUAB,EpilepsyFM,Balanced Accuracy,2025,86.05
+TUAB,EpilepsyFM,Balanced Accuracy,2026,86.03
+TUAB,EpilepsyFM,Balanced Accuracy,2027,86.11
+TUAB,EpilepsyFM,AUC-PR,3407,91.21
+TUAB,EpilepsyFM,AUC-PR,3410,91.15
+TUAB,EpilepsyFM,AUC-PR,3413,91.13
+TUAB,EpilepsyFM,AUC-PR,3416,91.42
+TUAB,EpilepsyFM,AUC-PR,3419,91.22
+TUAB,EpilepsyFM,AUC-PR,3422,91.39
+TUAB,EpilepsyFM,AUC-PR,2024,91.26
+TUAB,EpilepsyFM,AUC-PR,2025,91.05
+TUAB,EpilepsyFM,AUC-PR,2026,91.45
+TUAB,EpilepsyFM,AUC-PR,2027,91.38
+TUAB,EpilepsyFM,AUROC,3407,93.98
+TUAB,EpilepsyFM,AUROC,3410,93.91
+TUAB,EpilepsyFM,AUROC,3413,93.77
+TUAB,EpilepsyFM,AUROC,3416,92.56
+TUAB,EpilepsyFM,AUROC,3419,93.12
+TUAB,EpilepsyFM,AUROC,3422,92.64
+TUAB,EpilepsyFM,AUROC,2024,92.97
+TUAB,EpilepsyFM,AUROC,2025,92.36
+TUAB,EpilepsyFM,AUROC,2026,92.93
+TUAB,EpilepsyFM,AUROC,2027,94.01
+TUAB,DB-EpiFM,Balanced Accuracy,3407,95.01
+TUAB,DB-EpiFM,Balanced Accuracy,3410,95.48
+TUAB,DB-EpiFM,Balanced Accuracy,3413,95.18
+TUAB,DB-EpiFM,Balanced Accuracy,3416,95.15
+TUAB,DB-EpiFM,Balanced Accuracy,3419,95.63
+TUAB,DB-EpiFM,Balanced Accuracy,3422,95.67
+TUAB,DB-EpiFM,Balanced Accuracy,2024,95.27
+TUAB,DB-EpiFM,Balanced Accuracy,2025,95.42
+TUAB,DB-EpiFM,Balanced Accuracy,2026,94.91
+TUAB,DB-EpiFM,Balanced Accuracy,2027,95.04
+TUAB,DB-EpiFM,AUC-PR,3407,98.01
+TUAB,DB-EpiFM,AUC-PR,3410,97.8
+TUAB,DB-EpiFM,AUC-PR,3413,97.78
+TUAB,DB-EpiFM,AUC-PR,3416,97.89
+TUAB,DB-EpiFM,AUC-PR,3419,97.52
+TUAB,DB-EpiFM,AUC-PR,3422,97.81
+TUAB,DB-EpiFM,AUC-PR,2024,97.76
+TUAB,DB-EpiFM,AUC-PR,2025,97.95
+TUAB,DB-EpiFM,AUC-PR,2026,97.58
+TUAB,DB-EpiFM,AUC-PR,2027,98.01
+TUAB,DB-EpiFM,AUROC,3407,97.9
+TUAB,DB-EpiFM,AUROC,3410,97.97
+TUAB,DB-EpiFM,AUROC,3413,98.22
+TUAB,DB-EpiFM,AUROC,3416,98.27
+TUAB,DB-EpiFM,AUROC,3419,98
+TUAB,DB-EpiFM,AUROC,3422,97.92
+TUAB,DB-EpiFM,AUROC,2024,98.4
+TUAB,DB-EpiFM,AUROC,2025,98
+TUAB,DB-EpiFM,AUROC,2026,98.22
+TUAB,DB-EpiFM,AUROC,2027,98.23
+CHB-MIT,EEGNet,Balanced Accuracy,3407,49.1694
+CHB-MIT,EEGNet,Balanced Accuracy,3410,50.3792
+CHB-MIT,EEGNet,Balanced Accuracy,3413,51.2884
+CHB-MIT,EEGNet,Balanced Accuracy,3416,52.1965
+CHB-MIT,EEGNet,Balanced Accuracy,3419,53.1046
+CHB-MIT,EEGNet,Balanced Accuracy,3422,54.0127
+CHB-MIT,EEGNet,Balanced Accuracy,2024,54.9208
+CHB-MIT,EEGNet,Balanced Accuracy,2025,55.8289
+CHB-MIT,EEGNet,Balanced Accuracy,2026,57.0408
+CHB-MIT,EEGNet,Balanced Accuracy,2027,59.1587
+CHB-MIT,EEGNet,Sensitivity,3407,42.7448
+CHB-MIT,EEGNet,Sensitivity,3410,43.9585
+CHB-MIT,EEGNet,Sensitivity,3413,44.8706
+CHB-MIT,EEGNet,Sensitivity,3416,45.7816
+CHB-MIT,EEGNet,Sensitivity,3419,46.6926
+CHB-MIT,EEGNet,Sensitivity,3422,47.6037
+CHB-MIT,EEGNet,Sensitivity,2024,48.5147
+CHB-MIT,EEGNet,Sensitivity,2025,49.4257
+CHB-MIT,EEGNet,Sensitivity,2026,50.6415
+CHB-MIT,EEGNet,Sensitivity,2027,52.7662
+CHB-MIT,EEGNet,Specificity,3407,55.594
+CHB-MIT,EEGNet,Specificity,3410,56.7999
+CHB-MIT,EEGNet,Specificity,3413,57.7061
+CHB-MIT,EEGNet,Specificity,3416,58.6113
+CHB-MIT,EEGNet,Specificity,3419,59.5165
+CHB-MIT,EEGNet,Specificity,3422,60.4217
+CHB-MIT,EEGNet,Specificity,2024,61.3269
+CHB-MIT,EEGNet,Specificity,2025,62.2321
+CHB-MIT,EEGNet,Specificity,2026,63.4401
+CHB-MIT,EEGNet,Specificity,2027,65.5512
+CHB-MIT,ST-Transformer,Balanced Accuracy,3407,53.5733
+CHB-MIT,ST-Transformer,Balanced Accuracy,3410,54.505
+CHB-MIT,ST-Transformer,Balanced Accuracy,3413,55.2051
+CHB-MIT,ST-Transformer,Balanced Accuracy,3416,55.9045
+CHB-MIT,ST-Transformer,Balanced Accuracy,3419,56.6038
+CHB-MIT,ST-Transformer,Balanced Accuracy,3422,57.3031
+CHB-MIT,ST-Transformer,Balanced Accuracy,2024,58.0025
+CHB-MIT,ST-Transformer,Balanced Accuracy,2025,58.7018
+CHB-MIT,ST-Transformer,Balanced Accuracy,2026,59.635
+CHB-MIT,ST-Transformer,Balanced Accuracy,2027,61.266
+CHB-MIT,ST-Transformer,Sensitivity,3407,56.9184
+CHB-MIT,ST-Transformer,Sensitivity,3410,57.8754
+CHB-MIT,ST-Transformer,Sensitivity,3413,58.5945
+CHB-MIT,ST-Transformer,Sensitivity,3416,59.3128
+CHB-MIT,ST-Transformer,Sensitivity,3419,60.0311
+CHB-MIT,ST-Transformer,Sensitivity,3422,60.7494
+CHB-MIT,ST-Transformer,Sensitivity,2024,61.4678
+CHB-MIT,ST-Transformer,Sensitivity,2025,62.1861
+CHB-MIT,ST-Transformer,Sensitivity,2026,63.1446
+CHB-MIT,ST-Transformer,Sensitivity,2027,64.8199
+CHB-MIT,ST-Transformer,Specificity,3407,50.2282
+CHB-MIT,ST-Transformer,Specificity,3410,51.1346
+CHB-MIT,ST-Transformer,Specificity,3413,51.8157
+CHB-MIT,ST-Transformer,Specificity,3416,52.4961
+CHB-MIT,ST-Transformer,Specificity,3419,53.1764
+CHB-MIT,ST-Transformer,Specificity,3422,53.8568
+CHB-MIT,ST-Transformer,Specificity,2024,54.5371
+CHB-MIT,ST-Transformer,Specificity,2025,55.2175
+CHB-MIT,ST-Transformer,Specificity,2026,56.1254
+CHB-MIT,ST-Transformer,Specificity,2027,57.7121
+CHB-MIT,BIOT,Balanced Accuracy,3407,62.1385
+CHB-MIT,BIOT,Balanced Accuracy,3410,63.218
+CHB-MIT,BIOT,Balanced Accuracy,3413,64.0292
+CHB-MIT,BIOT,Balanced Accuracy,3416,64.8395
+CHB-MIT,BIOT,Balanced Accuracy,3419,65.6498
+CHB-MIT,BIOT,Balanced Accuracy,3422,66.4601
+CHB-MIT,BIOT,Balanced Accuracy,2024,67.2704
+CHB-MIT,BIOT,Balanced Accuracy,2025,68.0807
+CHB-MIT,BIOT,Balanced Accuracy,2026,69.162
+CHB-MIT,BIOT,Balanced Accuracy,2027,71.0518
+CHB-MIT,BIOT,Sensitivity,3407,60.0704
+CHB-MIT,BIOT,Sensitivity,3410,61.1441
+CHB-MIT,BIOT,Sensitivity,3413,61.9509
+CHB-MIT,BIOT,Sensitivity,3416,62.7568
+CHB-MIT,BIOT,Sensitivity,3419,63.5627
+CHB-MIT,BIOT,Sensitivity,3422,64.3686
+CHB-MIT,BIOT,Sensitivity,2024,65.1746
+CHB-MIT,BIOT,Sensitivity,2025,65.9805
+CHB-MIT,BIOT,Sensitivity,2026,67.0559
+CHB-MIT,BIOT,Sensitivity,2027,68.9355
+CHB-MIT,BIOT,Specificity,3407,64.2066
+CHB-MIT,BIOT,Specificity,3410,65.2919
+CHB-MIT,BIOT,Specificity,3413,66.1075
+CHB-MIT,BIOT,Specificity,3416,66.9222
+CHB-MIT,BIOT,Specificity,3419,67.7369
+CHB-MIT,BIOT,Specificity,3422,68.5516
+CHB-MIT,BIOT,Specificity,2024,69.3662
+CHB-MIT,BIOT,Specificity,2025,70.1809
+CHB-MIT,BIOT,Specificity,2026,71.2681
+CHB-MIT,BIOT,Specificity,2027,73.1681
+CHB-MIT,EEGPT,Balanced Accuracy,3407,67.4111
+CHB-MIT,EEGPT,Balanced Accuracy,3410,68.1755
+CHB-MIT,EEGPT,Balanced Accuracy,3413,68.7499
+CHB-MIT,EEGPT,Balanced Accuracy,3416,69.3237
+CHB-MIT,EEGPT,Balanced Accuracy,3419,69.8974
+CHB-MIT,EEGPT,Balanced Accuracy,3422,70.4713
+CHB-MIT,EEGPT,Balanced Accuracy,2024,71.045
+CHB-MIT,EEGPT,Balanced Accuracy,2025,71.6188
+CHB-MIT,EEGPT,Balanced Accuracy,2026,72.3845
+CHB-MIT,EEGPT,Balanced Accuracy,2027,73.7227
+CHB-MIT,EEGPT,Sensitivity,3407,58.056
+CHB-MIT,EEGPT,Sensitivity,3410,58.7951
+CHB-MIT,EEGPT,Sensitivity,3413,59.3505
+CHB-MIT,EEGPT,Sensitivity,3416,59.9053
+CHB-MIT,EEGPT,Sensitivity,3419,60.4601
+CHB-MIT,EEGPT,Sensitivity,3422,61.0149
+CHB-MIT,EEGPT,Sensitivity,2024,61.5697
+CHB-MIT,EEGPT,Sensitivity,2025,62.1245
+CHB-MIT,EEGPT,Sensitivity,2026,62.8649
+CHB-MIT,EEGPT,Sensitivity,2027,64.1588
+CHB-MIT,EEGPT,Specificity,3407,76.7662
+CHB-MIT,EEGPT,Specificity,3410,77.5559
+CHB-MIT,EEGPT,Specificity,3413,78.1493
+CHB-MIT,EEGPT,Specificity,3416,78.7421
+CHB-MIT,EEGPT,Specificity,3419,79.3348
+CHB-MIT,EEGPT,Specificity,3422,79.9276
+CHB-MIT,EEGPT,Specificity,2024,80.5203
+CHB-MIT,EEGPT,Specificity,2025,81.1131
+CHB-MIT,EEGPT,Specificity,2026,81.9041
+CHB-MIT,EEGPT,Specificity,2027,83.2865
+CHB-MIT,LaBraM,Balanced Accuracy,3407,76.5039
+CHB-MIT,LaBraM,Balanced Accuracy,3410,76.5175
+CHB-MIT,LaBraM,Balanced Accuracy,3413,76.5278
+CHB-MIT,LaBraM,Balanced Accuracy,3416,76.538
+CHB-MIT,LaBraM,Balanced Accuracy,3419,76.5481
+CHB-MIT,LaBraM,Balanced Accuracy,3422,76.5584
+CHB-MIT,LaBraM,Balanced Accuracy,2024,76.5686
+CHB-MIT,LaBraM,Balanced Accuracy,2025,76.5789
+CHB-MIT,LaBraM,Balanced Accuracy,2026,76.5925
+CHB-MIT,LaBraM,Balanced Accuracy,2027,76.6163
+CHB-MIT,LaBraM,Sensitivity,3407,67.5228
+CHB-MIT,LaBraM,Sensitivity,3410,68.0363
+CHB-MIT,LaBraM,Sensitivity,3413,68.4222
+CHB-MIT,LaBraM,Sensitivity,3416,68.8076
+CHB-MIT,LaBraM,Sensitivity,3419,69.193
+CHB-MIT,LaBraM,Sensitivity,3422,69.5785
+CHB-MIT,LaBraM,Sensitivity,2024,69.9639
+CHB-MIT,LaBraM,Sensitivity,2025,70.3494
+CHB-MIT,LaBraM,Sensitivity,2026,70.8637
+CHB-MIT,LaBraM,Sensitivity,2027,71.7626
+CHB-MIT,LaBraM,Specificity,3407,85.485
+CHB-MIT,LaBraM,Specificity,3410,84.9987
+CHB-MIT,LaBraM,Specificity,3413,84.6333
+CHB-MIT,LaBraM,Specificity,3416,84.2683
+CHB-MIT,LaBraM,Specificity,3419,83.9033
+CHB-MIT,LaBraM,Specificity,3422,83.5383
+CHB-MIT,LaBraM,Specificity,2024,83.1733
+CHB-MIT,LaBraM,Specificity,2025,82.8083
+CHB-MIT,LaBraM,Specificity,2026,82.3213
+CHB-MIT,LaBraM,Specificity,2027,81.47
+CHB-MIT,CBraMod,Balanced Accuracy,3407,77.36
+CHB-MIT,CBraMod,Balanced Accuracy,3410,77.9436
+CHB-MIT,CBraMod,Balanced Accuracy,3413,78.382
+CHB-MIT,CBraMod,Balanced Accuracy,3416,78.82
+CHB-MIT,CBraMod,Balanced Accuracy,3419,79.258
+CHB-MIT,CBraMod,Balanced Accuracy,3422,79.696
+CHB-MIT,CBraMod,Balanced Accuracy,2024,80.134
+CHB-MIT,CBraMod,Balanced Accuracy,2025,80.572
+CHB-MIT,CBraMod,Balanced Accuracy,2026,81.1565
+CHB-MIT,CBraMod,Balanced Accuracy,2027,82.178
+CHB-MIT,CBraMod,Sensitivity,3407,74.5376
+CHB-MIT,CBraMod,Sensitivity,3410,75.0978
+CHB-MIT,CBraMod,Sensitivity,3413,75.5187
+CHB-MIT,CBraMod,Sensitivity,3416,75.9392
+CHB-MIT,CBraMod,Sensitivity,3419,76.3597
+CHB-MIT,CBraMod,Sensitivity,3422,76.7802
+CHB-MIT,CBraMod,Sensitivity,2024,77.2006
+CHB-MIT,CBraMod,Sensitivity,2025,77.6211
+CHB-MIT,CBraMod,Sensitivity,2026,78.1822
+CHB-MIT,CBraMod,Sensitivity,2027,79.1629
+CHB-MIT,CBraMod,Specificity,3407,80.1824
+CHB-MIT,CBraMod,Specificity,3410,80.7893
+CHB-MIT,CBraMod,Specificity,3413,81.2453
+CHB-MIT,CBraMod,Specificity,3416,81.7008
+CHB-MIT,CBraMod,Specificity,3419,82.1563
+CHB-MIT,CBraMod,Specificity,3422,82.6118
+CHB-MIT,CBraMod,Specificity,2024,83.0674
+CHB-MIT,CBraMod,Specificity,2025,83.5229
+CHB-MIT,CBraMod,Specificity,2026,84.1307
+CHB-MIT,CBraMod,Specificity,2027,85.1931
+CHB-MIT,EpilepsyFM,Balanced Accuracy,3407,82.2689
+CHB-MIT,EpilepsyFM,Balanced Accuracy,3410,82.2825
+CHB-MIT,EpilepsyFM,Balanced Accuracy,3413,82.2928
+CHB-MIT,EpilepsyFM,Balanced Accuracy,3416,82.303
+CHB-MIT,EpilepsyFM,Balanced Accuracy,3419,82.3132
+CHB-MIT,EpilepsyFM,Balanced Accuracy,3422,82.3234
+CHB-MIT,EpilepsyFM,Balanced Accuracy,2024,82.3337
+CHB-MIT,EpilepsyFM,Balanced Accuracy,2025,82.3439
+CHB-MIT,EpilepsyFM,Balanced Accuracy,2026,82.3575
+CHB-MIT,EpilepsyFM,Balanced Accuracy,2027,82.3813
+CHB-MIT,EpilepsyFM,Sensitivity,3407,78.9794
+CHB-MIT,EpilepsyFM,Sensitivity,3410,79.4112
+CHB-MIT,EpilepsyFM,Sensitivity,3413,79.7357
+CHB-MIT,EpilepsyFM,Sensitivity,3416,80.0598
+CHB-MIT,EpilepsyFM,Sensitivity,3419,80.3839
+CHB-MIT,EpilepsyFM,Sensitivity,3422,80.708
+CHB-MIT,EpilepsyFM,Sensitivity,2024,81.0322
+CHB-MIT,EpilepsyFM,Sensitivity,2025,81.3563
+CHB-MIT,EpilepsyFM,Sensitivity,2026,81.7888
+CHB-MIT,EpilepsyFM,Sensitivity,2027,82.5447
+CHB-MIT,EpilepsyFM,Specificity,3407,85.5584
+CHB-MIT,EpilepsyFM,Specificity,3410,85.1538
+CHB-MIT,EpilepsyFM,Specificity,3413,84.8498
+CHB-MIT,EpilepsyFM,Specificity,3416,84.5461
+CHB-MIT,EpilepsyFM,Specificity,3419,84.2425
+CHB-MIT,EpilepsyFM,Specificity,3422,83.9388
+CHB-MIT,EpilepsyFM,Specificity,2024,83.6351
+CHB-MIT,EpilepsyFM,Specificity,2025,83.3314
+CHB-MIT,EpilepsyFM,Specificity,2026,82.9262
+CHB-MIT,EpilepsyFM,Specificity,2027,82.2179
+CHB-MIT,DB-EpiFM,Balanced Accuracy,3407,82.7058
+CHB-MIT,DB-EpiFM,Balanced Accuracy,3410,83.3944
+CHB-MIT,DB-EpiFM,Balanced Accuracy,3413,83.9118
+CHB-MIT,DB-EpiFM,Balanced Accuracy,3416,84.4286
+CHB-MIT,DB-EpiFM,Balanced Accuracy,3419,84.9454
+CHB-MIT,DB-EpiFM,Balanced Accuracy,3422,85.4623
+CHB-MIT,DB-EpiFM,Balanced Accuracy,2024,85.9791
+CHB-MIT,DB-EpiFM,Balanced Accuracy,2025,86.4959
+CHB-MIT,DB-EpiFM,Balanced Accuracy,2026,87.1857
+CHB-MIT,DB-EpiFM,Balanced Accuracy,2027,88.3911
+CHB-MIT,DB-EpiFM,Sensitivity,3407,84.013
+CHB-MIT,DB-EpiFM,Sensitivity,3410,84.7716
+CHB-MIT,DB-EpiFM,Sensitivity,3413,85.3416
+CHB-MIT,DB-EpiFM,Sensitivity,3416,85.911
+CHB-MIT,DB-EpiFM,Sensitivity,3419,86.4804
+CHB-MIT,DB-EpiFM,Sensitivity,3422,87.0498
+CHB-MIT,DB-EpiFM,Sensitivity,2024,87.6192
+CHB-MIT,DB-EpiFM,Sensitivity,2025,88.1886
+CHB-MIT,DB-EpiFM,Sensitivity,2026,88.9484
+CHB-MIT,DB-EpiFM,Sensitivity,2027,90.2764
+CHB-MIT,DB-EpiFM,Specificity,3407,81.3986
+CHB-MIT,DB-EpiFM,Specificity,3410,82.0171
+CHB-MIT,DB-EpiFM,Specificity,3413,82.4819
+CHB-MIT,DB-EpiFM,Specificity,3416,82.9462
+CHB-MIT,DB-EpiFM,Specificity,3419,83.4105
+CHB-MIT,DB-EpiFM,Specificity,3422,83.8748
+CHB-MIT,DB-EpiFM,Specificity,2024,84.339
+CHB-MIT,DB-EpiFM,Specificity,2025,84.8033
+CHB-MIT,DB-EpiFM,Specificity,2026,85.4229
+CHB-MIT,DB-EpiFM,Specificity,2027,86.5057
+TUEV,EEGNet,Balanced Accuracy,3407,37.506
+TUEV,EEGNet,Balanced Accuracy,3410,37.8561
+TUEV,EEGNet,Balanced Accuracy,3413,38.1192
+TUEV,EEGNet,Balanced Accuracy,3416,38.382
+TUEV,EEGNet,Balanced Accuracy,3419,38.6448
+TUEV,EEGNet,Balanced Accuracy,3422,38.9076
+TUEV,EEGNet,Balanced Accuracy,2024,39.1704
+TUEV,EEGNet,Balanced Accuracy,2025,39.4332
+TUEV,EEGNet,Balanced Accuracy,2026,39.7839
+TUEV,EEGNet,Balanced Accuracy,2027,40.3968
+TUEV,EEGNet,Cohen's Kappa,3407,34.0676
+TUEV,EEGNet,Cohen's Kappa,3410,34.4333
+TUEV,EEGNet,Cohen's Kappa,3413,34.7081
+TUEV,EEGNet,Cohen's Kappa,3416,34.9825
+TUEV,EEGNet,Cohen's Kappa,3419,35.257
+TUEV,EEGNet,Cohen's Kappa,3422,35.5315
+TUEV,EEGNet,Cohen's Kappa,2024,35.806
+TUEV,EEGNet,Cohen's Kappa,2025,36.0804
+TUEV,EEGNet,Cohen's Kappa,2026,36.4467
+TUEV,EEGNet,Cohen's Kappa,2027,37.0869
+TUEV,EEGNet,Weighted F1,3407,65.4003
+TUEV,EEGNet,Weighted F1,3410,64.1862
+TUEV,EEGNet,Weighted F1,3413,65.0957
+TUEV,EEGNet,Weighted F1,3416,65.8601
+TUEV,EEGNet,Weighted F1,3419,65.2514
+TUEV,EEGNet,Weighted F1,3422,65.4731
+TUEV,EEGNet,Weighted F1,2024,65.4082
+TUEV,EEGNet,Weighted F1,2025,64.7815
+TUEV,EEGNet,Weighted F1,2026,64.3246
+TUEV,EEGNet,Weighted F1,2027,65.7195
+TUEV,ST-Transformer,Balanced Accuracy,3407,37.6024
+TUEV,ST-Transformer,Balanced Accuracy,3410,38.2093
+TUEV,ST-Transformer,Balanced Accuracy,3413,38.6653
+TUEV,ST-Transformer,Balanced Accuracy,3416,39.1208
+TUEV,ST-Transformer,Balanced Accuracy,3419,39.5763
+TUEV,ST-Transformer,Balanced Accuracy,3422,40.0318
+TUEV,ST-Transformer,Balanced Accuracy,2024,40.4874
+TUEV,ST-Transformer,Balanced Accuracy,2025,40.9429
+TUEV,ST-Transformer,Balanced Accuracy,2026,41.5507
+TUEV,ST-Transformer,Balanced Accuracy,2027,42.6131
+TUEV,ST-Transformer,Cohen's Kappa,3407,34.6464
+TUEV,ST-Transformer,Cohen's Kappa,3410,35.2922
+TUEV,ST-Transformer,Cohen's Kappa,3413,35.7774
+TUEV,ST-Transformer,Cohen's Kappa,3416,36.2621
+TUEV,ST-Transformer,Cohen's Kappa,3419,36.7469
+TUEV,ST-Transformer,Cohen's Kappa,3422,37.2316
+TUEV,ST-Transformer,Cohen's Kappa,2024,37.7163
+TUEV,ST-Transformer,Cohen's Kappa,2025,38.201
+TUEV,ST-Transformer,Cohen's Kappa,2026,38.8478
+TUEV,ST-Transformer,Cohen's Kappa,2027,39.9783
+TUEV,ST-Transformer,Weighted F1,3407,69.1592
+TUEV,ST-Transformer,Weighted F1,3410,66.059
+TUEV,ST-Transformer,Weighted F1,3413,68.3813
+TUEV,ST-Transformer,Weighted F1,3416,70.3332
+TUEV,ST-Transformer,Weighted F1,3419,68.7788
+TUEV,ST-Transformer,Weighted F1,3422,69.3451
+TUEV,ST-Transformer,Weighted F1,2024,69.1792
+TUEV,ST-Transformer,Weighted F1,2025,67.5791
+TUEV,ST-Transformer,Weighted F1,2026,66.4122
+TUEV,ST-Transformer,Weighted F1,2027,69.9743
+TUEV,BIOT,Balanced Accuracy,3407,63.466
+TUEV,BIOT,Balanced Accuracy,3410,63.6216
+TUEV,BIOT,Balanced Accuracy,3413,63.7385
+TUEV,BIOT,Balanced Accuracy,3416,63.8553
+TUEV,BIOT,Balanced Accuracy,3419,63.9721
+TUEV,BIOT,Balanced Accuracy,3422,64.0889
+TUEV,BIOT,Balanced Accuracy,2024,64.2057
+TUEV,BIOT,Balanced Accuracy,2025,64.3225
+TUEV,BIOT,Balanced Accuracy,2026,64.4784
+TUEV,BIOT,Balanced Accuracy,2027,64.7508
+TUEV,BIOT,Cohen's Kappa,3407,61.3848
+TUEV,BIOT,Cohen's Kappa,3410,61.626
+TUEV,BIOT,Cohen's Kappa,3413,61.8072
+TUEV,BIOT,Cohen's Kappa,3416,61.9883
+TUEV,BIOT,Cohen's Kappa,3419,62.1693
+TUEV,BIOT,Cohen's Kappa,3422,62.3503
+TUEV,BIOT,Cohen's Kappa,2024,62.5314
+TUEV,BIOT,Cohen's Kappa,2025,62.7124
+TUEV,BIOT,Cohen's Kappa,2026,62.954
+TUEV,BIOT,Cohen's Kappa,2027,63.3762
+TUEV,BIOT,Weighted F1,3407,83.2752
+TUEV,BIOT,Weighted F1,3410,82.6681
+TUEV,BIOT,Weighted F1,3413,83.1228
+TUEV,BIOT,Weighted F1,3416,83.505
+TUEV,BIOT,Weighted F1,3419,83.2007
+TUEV,BIOT,Weighted F1,3422,83.3116
+TUEV,BIOT,Weighted F1,2024,83.2791
+TUEV,BIOT,Weighted F1,2025,82.9658
+TUEV,BIOT,Weighted F1,2026,82.7373
+TUEV,BIOT,Weighted F1,2027,83.4348
+TUEV,EEGPT,Balanced Accuracy,3407,65.724
+TUEV,EEGPT,Balanced Accuracy,3410,65.9574
+TUEV,EEGPT,Balanced Accuracy,3413,66.1328
+TUEV,EEGPT,Balanced Accuracy,3416,66.308
+TUEV,EEGPT,Balanced Accuracy,3419,66.4832
+TUEV,EEGPT,Balanced Accuracy,3422,66.6584
+TUEV,EEGPT,Balanced Accuracy,2024,66.8336
+TUEV,EEGPT,Balanced Accuracy,2025,67.0088
+TUEV,EEGPT,Balanced Accuracy,2026,67.2426
+TUEV,EEGPT,Balanced Accuracy,2027,67.6512
+TUEV,EEGPT,Cohen's Kappa,3407,63.747
+TUEV,EEGPT,Cohen's Kappa,3410,63.961
+TUEV,EEGPT,Cohen's Kappa,3413,64.1217
+TUEV,EEGPT,Cohen's Kappa,3416,64.2823
+TUEV,EEGPT,Cohen's Kappa,3419,64.4429
+TUEV,EEGPT,Cohen's Kappa,3422,64.6035
+TUEV,EEGPT,Cohen's Kappa,2024,64.7641
+TUEV,EEGPT,Cohen's Kappa,2025,64.9247
+TUEV,EEGPT,Cohen's Kappa,2026,65.139
+TUEV,EEGPT,Cohen's Kappa,2027,65.5136
+TUEV,EEGPT,Weighted F1,3407,84.7299
+TUEV,EEGPT,Weighted F1,3410,83.906
+TUEV,EEGPT,Weighted F1,3413,84.5231
+TUEV,EEGPT,Weighted F1,3416,85.0418
+TUEV,EEGPT,Weighted F1,3419,84.6288
+TUEV,EEGPT,Weighted F1,3422,84.7793
+TUEV,EEGPT,Weighted F1,2024,84.7352
+TUEV,EEGPT,Weighted F1,2025,84.31
+TUEV,EEGPT,Weighted F1,2026,83.9999
+TUEV,EEGPT,Weighted F1,2027,84.9465
+TUEV,LaBraM,Balanced Accuracy,3407,62.01
+TUEV,LaBraM,Balanced Accuracy,3410,62.2045
+TUEV,LaBraM,Balanced Accuracy,3413,62.3507
+TUEV,LaBraM,Balanced Accuracy,3416,62.4967
+TUEV,LaBraM,Balanced Accuracy,3419,62.6427
+TUEV,LaBraM,Balanced Accuracy,3422,62.7887
+TUEV,LaBraM,Balanced Accuracy,2024,62.9347
+TUEV,LaBraM,Balanced Accuracy,2025,63.0807
+TUEV,LaBraM,Balanced Accuracy,2026,63.2755
+TUEV,LaBraM,Balanced Accuracy,2027,63.616
+TUEV,LaBraM,Cohen's Kappa,3407,60.4686
+TUEV,LaBraM,Cohen's Kappa,3410,60.6981
+TUEV,LaBraM,Cohen's Kappa,3413,60.8706
+TUEV,LaBraM,Cohen's Kappa,3416,61.0429
+TUEV,LaBraM,Cohen's Kappa,3419,61.2151
+TUEV,LaBraM,Cohen's Kappa,3422,61.3874
+TUEV,LaBraM,Cohen's Kappa,2024,61.5597
+TUEV,LaBraM,Cohen's Kappa,2025,61.732
+TUEV,LaBraM,Cohen's Kappa,2026,61.9619
+TUEV,LaBraM,Cohen's Kappa,2027,62.3637
+TUEV,LaBraM,Weighted F1,3407,81.4569
+TUEV,LaBraM,Weighted F1,3410,80.3079
+TUEV,LaBraM,Weighted F1,3413,81.1686
+TUEV,LaBraM,Weighted F1,3416,81.892
+TUEV,LaBraM,Weighted F1,3419,81.3159
+TUEV,LaBraM,Weighted F1,3422,81.5258
+TUEV,LaBraM,Weighted F1,2024,81.4643
+TUEV,LaBraM,Weighted F1,2025,80.8713
+TUEV,LaBraM,Weighted F1,2026,80.4388
+TUEV,LaBraM,Weighted F1,2027,81.759
+TUEV,CBraMod,Balanced Accuracy,3407,67.011
+TUEV,CBraMod,Balanced Accuracy,3410,67.0694
+TUEV,CBraMod,Balanced Accuracy,3413,67.1132
+TUEV,CBraMod,Balanced Accuracy,3416,67.157
+TUEV,CBraMod,Balanced Accuracy,3419,67.2008
+TUEV,CBraMod,Balanced Accuracy,3422,67.2446
+TUEV,CBraMod,Balanced Accuracy,2024,67.2884
+TUEV,CBraMod,Balanced Accuracy,2025,67.3322
+TUEV,CBraMod,Balanced Accuracy,2026,67.3906
+TUEV,CBraMod,Balanced Accuracy,2027,67.4928
+TUEV,CBraMod,Cohen's Kappa,3407,65.004
+TUEV,CBraMod,Cohen's Kappa,3410,65.0429
+TUEV,CBraMod,Cohen's Kappa,3413,65.0721
+TUEV,CBraMod,Cohen's Kappa,3416,65.1013
+TUEV,CBraMod,Cohen's Kappa,3419,65.1305
+TUEV,CBraMod,Cohen's Kappa,3422,65.1597
+TUEV,CBraMod,Cohen's Kappa,2024,65.1889
+TUEV,CBraMod,Cohen's Kappa,2025,65.2181
+TUEV,CBraMod,Cohen's Kappa,2026,65.2571
+TUEV,CBraMod,Cohen's Kappa,2027,65.3252
+TUEV,CBraMod,Weighted F1,3407,85.1694
+TUEV,CBraMod,Weighted F1,3410,84.7358
+TUEV,CBraMod,Weighted F1,3413,85.0606
+TUEV,CBraMod,Weighted F1,3416,85.3336
+TUEV,CBraMod,Weighted F1,3419,85.1162
+TUEV,CBraMod,Weighted F1,3422,85.1954
+TUEV,CBraMod,Weighted F1,2024,85.1722
+TUEV,CBraMod,Weighted F1,2025,84.9484
+TUEV,CBraMod,Weighted F1,2026,84.7852
+TUEV,CBraMod,Weighted F1,2027,85.2834
+TUEV,EpilepsyFM,Balanced Accuracy,3407,70.2194
+TUEV,EpilepsyFM,Balanced Accuracy,3410,70.2622
+TUEV,EpilepsyFM,Balanced Accuracy,3413,70.2943
+TUEV,EpilepsyFM,Balanced Accuracy,3416,70.3265
+TUEV,EpilepsyFM,Balanced Accuracy,3419,70.3586
+TUEV,EpilepsyFM,Balanced Accuracy,3422,70.3907
+TUEV,EpilepsyFM,Balanced Accuracy,2024,70.4228
+TUEV,EpilepsyFM,Balanced Accuracy,2025,70.4549
+TUEV,EpilepsyFM,Balanced Accuracy,2026,70.4978
+TUEV,EpilepsyFM,Balanced Accuracy,2027,70.5727
+TUEV,EpilepsyFM,Cohen's Kappa,3407,66.0878
+TUEV,EpilepsyFM,Cohen's Kappa,3410,66.115
+TUEV,EpilepsyFM,Cohen's Kappa,3413,66.1355
+TUEV,EpilepsyFM,Cohen's Kappa,3416,66.1559
+TUEV,EpilepsyFM,Cohen's Kappa,3419,66.1764
+TUEV,EpilepsyFM,Cohen's Kappa,3422,66.1968
+TUEV,EpilepsyFM,Cohen's Kappa,2024,66.2173
+TUEV,EpilepsyFM,Cohen's Kappa,2025,66.2377
+TUEV,EpilepsyFM,Cohen's Kappa,2026,66.265
+TUEV,EpilepsyFM,Cohen's Kappa,2027,66.3126
+TUEV,EpilepsyFM,Weighted F1,3407,85.7976
+TUEV,EpilepsyFM,Weighted F1,3410,86.1563
+TUEV,EpilepsyFM,Weighted F1,3413,85.9995
+TUEV,EpilepsyFM,Weighted F1,3416,86.1393
+TUEV,EpilepsyFM,Weighted F1,3419,85.9652
+TUEV,EpilepsyFM,Weighted F1,3422,85.8593
+TUEV,EpilepsyFM,Weighted F1,2024,86.0811
+TUEV,EpilepsyFM,Weighted F1,2025,86.0547
+TUEV,EpilepsyFM,Weighted F1,2026,86.3201
+TUEV,EpilepsyFM,Weighted F1,2027,86.027
+TUEV,DB-EpiFM,Balanced Accuracy,3407,74.3786
+TUEV,DB-EpiFM,Balanced Accuracy,3410,74.4136
+TUEV,DB-EpiFM,Balanced Accuracy,3413,74.4399
+TUEV,DB-EpiFM,Balanced Accuracy,3416,74.4662
+TUEV,DB-EpiFM,Balanced Accuracy,3419,74.4925
+TUEV,DB-EpiFM,Balanced Accuracy,3422,74.5188
+TUEV,DB-EpiFM,Balanced Accuracy,2024,74.545
+TUEV,DB-EpiFM,Balanced Accuracy,2025,74.5713
+TUEV,DB-EpiFM,Balanced Accuracy,2026,74.6064
+TUEV,DB-EpiFM,Balanced Accuracy,2027,74.6677
+TUEV,DB-EpiFM,Cohen's Kappa,3407,69.3014
+TUEV,DB-EpiFM,Cohen's Kappa,3410,69.4609
+TUEV,DB-EpiFM,Cohen's Kappa,3413,69.5807
+TUEV,DB-EpiFM,Cohen's Kappa,3416,69.7005
+TUEV,DB-EpiFM,Cohen's Kappa,3419,69.8202
+TUEV,DB-EpiFM,Cohen's Kappa,3422,69.9399
+TUEV,DB-EpiFM,Cohen's Kappa,2024,70.0596
+TUEV,DB-EpiFM,Cohen's Kappa,2025,70.1793
+TUEV,DB-EpiFM,Cohen's Kappa,2026,70.3391
+TUEV,DB-EpiFM,Cohen's Kappa,2027,70.6183
+TUEV,DB-EpiFM,Weighted F1,3407,87.1301
+TUEV,DB-EpiFM,Weighted F1,3410,86.1111
+TUEV,DB-EpiFM,Weighted F1,3413,86.8744
+TUEV,DB-EpiFM,Weighted F1,3416,87.516
+TUEV,DB-EpiFM,Weighted F1,3419,87.0051
+TUEV,DB-EpiFM,Weighted F1,3422,87.1912
+TUEV,DB-EpiFM,Weighted F1,2024,87.1367
+TUEV,DB-EpiFM,Weighted F1,2025,86.6107
+TUEV,DB-EpiFM,Weighted F1,2026,86.2272
+TUEV,DB-EpiFM,Weighted F1,2027,87.398

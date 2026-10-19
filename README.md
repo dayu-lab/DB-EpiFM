@@ -90,7 +90,8 @@ DB-EpiFM/
 ├── models/                         # DB-EpiFM backbone and downstream models
 ├── processing/                     # Dataset preprocessing scripts
 ├── supplementary/
-│   └── data_leakage_audit/         # Patient-level leakage-audit materials
+│   ├── data_leakage_audit/         # Patient-level leakage-audit materials
+│   └── statistical_analysis/      # Ten-run scores and manuscript statistics
 ├── tool/                           # Evaluation and analysis utilities
 ├── utils/                          # Shared utility functions
 ├── pretrain_main.py                # Pretraining entry point
@@ -613,6 +614,7 @@ This repository provides:
 - software and hardware environment information;
 - patient-independent downstream splitting procedures;
 - patient-level pretraining/downstream leakage-audit materials;
+- ten-run seed-level results and statistical-analysis code;
 - sanitized audit manifests;
 - pretrained DB-EpiFM weights.
 
@@ -623,6 +625,43 @@ For the patient-level leakage audit, see:
 ```text
 supplementary/data_leakage_audit/
 ```
+
+### Main-experiment statistical analysis
+
+The anonymized, seed-level scores for all eight methods, three datasets, and
+three reported metrics per dataset are in
+`supplementary/statistical_analysis/seed_level_scores.csv` (720 rows). Each row
+identifies a dataset, model, metric, seed, and score. All scores in this CSV
+are percentages; the original TUAB fractional scores were multiplied by 100.
+The seed labels are shared across methods and are used to form paired
+comparisons. CHB-MIT scores represent complete five-fold, patient-level runs,
+not individual folds. No raw EEG recordings or patient identifiers are included.
+
+From the repository root, install the analysis dependencies and reproduce the
+statistical outputs with:
+
+```bash
+python -m pip install numpy pandas scipy
+python supplementary/statistical_analysis/compute_statistics.py
+```
+
+By default, the script reads the CSV next to it and writes
+`model_mean_sd.csv`, `all_pairwise_comparisons.csv`,
+`table7_comparisons.csv`, and `analysis_metadata.json` under
+`supplementary/statistical_analysis/analysis_outputs/`. The latter directory
+is ignored by Git. To analyze a different input, pass `--input` and
+`--output-dir`; an XLSX input also requires `openpyxl`.
+
+The script computes mean and sample standard deviation over ten runs, a
+Friedman omnibus test with Kendall's W, exact two-sided Wilcoxon signed-rank
+tests by full sign enumeration (including tied absolute differences), and
+Holm adjustment across the seven DB-EpiFM-versus-baseline comparisons for each
+dataset/metric. It computes 95% BCa confidence intervals for within-seed
+paired mean differences using 10,000 bootstrap resamples and a fixed random
+seed (20261006). `table7_comparisons.csv` retains the best baseline by mean
+score for each dataset/metric; the all-pairwise file contains every comparison.
+All differences and interval bounds are in percentage points. Input scores are
+never modified to match manuscript values.
 
 For the computational environment, see:
 
